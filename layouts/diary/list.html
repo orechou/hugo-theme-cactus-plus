@@ -7,7 +7,7 @@
 
   <ul class="diary-list">
     {{ $dataFormat := .Site.Params.dateFormat | default "2006-01-02" }}
-    {{ range .Pages }}
+    {{ range (sort .Paginator.Pages "Date" "desc") }}
       <li class="diary-entry">
         <div class="meta">
           <time datetime="{{ time .Date }}">{{ .Date.Format $dataFormat }}</time>
