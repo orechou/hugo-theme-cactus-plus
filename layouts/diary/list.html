@@ -1,0 +1,22 @@
+{{ define "main" }}
+<div id="diary">
+  <div class="diary-header">
+    <h1>📔 {{ i18n "diary.title" | default "Diary" }}</h1>
+    <span class="diary-count">{{ len (where .Site.RegularPages "Type" "diary") }} {{ i18n "diary.entries" | default "entries" }}</span>
+  </div>
+
+  <ul class="diary-list">
+    {{ $dataFormat := .Site.Params.dateFormat | default "2006-01-02" }}
+    {{ range .Pages }}
+      <li class="diary-entry">
+        <div class="meta">
+          <time datetime="{{ time .Date }}">{{ .Date.Format $dataFormat }}</time>
+        </div>
+        <span><a href="{{ .Permalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ i18n "diary.untitled" | default "Untitled" }}{{ end }}</a></span>
+      </li>
+    {{ end }}
+  </ul>
+
+  {{ partial "pagination.html" . }}
+</div>
+{{ end }}
