@@ -67,8 +67,6 @@
 - id: diary.title
   translation: "日记"
 
-- id: diary.entries
-  translation: "{count} 篇"
 
 - id: diary.untitled
   translation: "无标题"

@@ -2,7 +2,6 @@
 <div id="diary">
   <div class="diary-header">
     <h1>📔 {{ i18n "diary.title" | default "Diary" }}</h1>
-    <span class="diary-count">{{ len (where .Site.RegularPages "Type" "diary") }} {{ i18n "diary.entries" | default "entries" }}</span>
   </div>
 
   <ul class="diary-list">

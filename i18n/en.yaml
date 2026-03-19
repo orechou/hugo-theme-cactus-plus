@@ -67,8 +67,6 @@
 - id: diary.title
   translation: "Diary"
 
-- id: diary.entries
-  translation: "{count} entries"
 
 - id: diary.untitled
   translation: "Untitled"
