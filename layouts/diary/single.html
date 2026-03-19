@@ -1,0 +1,26 @@
+{{ define "main" }}
+<article class="diary-single">
+  <header class="diary-single-header">
+    <h1>{{ .Title }}</h1>
+    <div class="diary-single-meta">
+      <time datetime="{{ time .Date }}">{{ .Date.Format (.Site.Params.dateFormat | default "2006-01-02") }}</time>
+      {{ with .Params.location }}
+        <span class="meta-sep">·</span>
+        <span class="diary-location">{{ . }}</span>
+      {{ end }}
+      {{ with .Params.weather }}
+        <span class="meta-sep">·</span>
+        <span class="diary-weather">{{ . }}</span>
+      {{ end }}
+      {{ with .Params.mood }}
+        <span class="meta-sep">·</span>
+        <span class="diary-mood">{{ . }}</span>
+      {{ end }}
+    </div>
+  </header>
+
+  <div class="content diary-content">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}
