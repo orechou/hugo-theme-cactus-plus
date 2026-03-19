@@ -1,9 +1,5 @@
 {{ define "main" }}
 <div id="diary">
-  <div class="diary-header">
-    <h1>📔 {{ i18n "diary.title" | default "Diary" }}</h1>
-  </div>
-
   <ul class="diary-list">
     {{ $dataFormat := .Site.Params.dateFormat | default "2006-01-02" }}
     {{ range (sort .Paginator.Pages "Date" "desc") }}
