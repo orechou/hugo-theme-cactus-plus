@@ -1,17 +1,18 @@
 {{ define "main" }}
-<div id="diary">
-  <ul class="diary-list">
+<div id="archive">
+  <ul class="post-list">
     {{ $dataFormat := .Site.Params.dateFormat | default "2006-01-02" }}
     {{ range (sort .Paginator.Pages "Date" "desc") }}
-      <li class="diary-entry">
-        <div class="meta">
-          <time datetime="{{ time .Date }}">{{ .Date.Format $dataFormat }}</time>
-        </div>
-        <span><a href="{{ .Permalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ i18n "diary.untitled" | default "Untitled" }}{{ end }}</a></span>
-      </li>
+    <li class="post-item">
+      <div class="meta">
+        <time datetime="{{ time .Date }}" itemprop="datePublished">{{ .Date.Format $dataFormat }}</time>
+      </div>
+      <span>
+        <a class="" href="{{ .Permalink }}">{{ if .Title }} {{ .Title }} {{ else }} Untitled {{ end }}</a>
+      </span>
+    </li>
     {{ end }}
   </ul>
-
   {{ partial "pagination.html" . }}
 </div>
 {{ end }}
