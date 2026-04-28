@@ -25,6 +25,11 @@ name = "Diary"
 url = "/diary"
 weight = 4
 
+[[menu.main]]
+name = "Paintings"
+url = "/paintings"
+weight = 5
+
 # [[menu.main]]
 # name = "Tags"
 # url = "/tags"
@@ -33,7 +38,7 @@ weight = 4
 [[menu.main]]
 name = "About"
 url = "/about"
-weight = 5
+weight = 6
 
 # Pagination
 [pagination]
@@ -79,6 +84,10 @@ weight = 5
   # Diary configuration
   [params.diary]
   diaryPerPage = 10
+
+  # Paintings configuration
+  [params.paintings]
+  paintingsPerPage = 12
 
   # Social links (optional)
   [[params.social]]

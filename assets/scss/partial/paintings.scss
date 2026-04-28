@@ -1,0 +1,317 @@
+// Paintings Section
+
+#paintings {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+// Tag filter bar
+.paintings-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.painting-filter-tag {
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--color-meta);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  text-transform: capitalize;
+
+  &:hover {
+    color: var(--color-text);
+    border-color: var(--color-text);
+  }
+
+  &.active {
+    color: #fff;
+    background: #6B8E23;
+    border-color: #6B8E23;
+  }
+}
+
+// Masonry layout
+.paintings-masonry {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.paintings-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+// Painting card
+.painting-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+    .painting-card-overlay {
+      opacity: 1;
+    }
+  }
+}
+
+.painting-card-image {
+  width: 100%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .painting-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, var(--color-accent-1), var(--color-link));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+}
+
+.painting-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.painting-card-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.painting-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.painting-card-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  text-decoration: none !important;
+  border: none !important;
+  outline: none;
+  background-image: none !important;
+  box-shadow: none !important;
+
+  &:hover {
+    text-decoration: none !important;
+    background-image: none !important;
+    box-shadow: none !important;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// Tag chip (shared between list and single)
+.painting-tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: var(--color-text);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  opacity: 0.9;
+
+  .painting-card-overlay & {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: transparent;
+  }
+}
+
+// Responsive masonry
+@media (max-width: 768px) {
+  .paintings-masonry {
+    gap: 1rem;
+    // Hide 3rd column on tablet
+    .paintings-column:nth-child(3) {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .paintings-masonry {
+    gap: 1rem;
+    // Show only 1 column on mobile
+    .paintings-column:nth-child(2),
+    .paintings-column:nth-child(3) {
+      display: none;
+    }
+  }
+}
+
+// Painting Single Page
+
+.painting-single {
+  margin-top: 3rem;
+}
+
+.painting-image {
+  margin-bottom: 2rem;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.painting-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+
+  h1 {
+    font-size: 2rem;
+    margin: 0 0 0.75rem 0;
+    color: var(--color-text);
+  }
+}
+
+.painting-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-meta);
+
+  .meta-sep {
+    color: var(--color-meta);
+  }
+}
+
+.painting-model {
+  color: var(--color-accent-2);
+  font-weight: 500;
+}
+
+// Info section (prompt, params)
+.painting-info {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.painting-info-item {
+  h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-meta);
+    margin: 0 0 0.5rem 0;
+  }
+}
+
+.painting-prompt {
+  padding: 1rem;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-family: 'JetBrainsMono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  word-break: break-word;
+}
+
+.painting-params {
+  width: auto;
+  border-collapse: collapse;
+
+  td {
+    padding: 0.4rem 1rem 0.4rem 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .param-key {
+    color: var(--color-meta);
+    font-family: 'JetBrainsMono', monospace;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .param-val {
+    color: var(--color-text);
+    font-family: 'JetBrainsMono', monospace;
+    font-size: 0.85rem;
+  }
+}
+
+.painting-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.painting-content {
+  margin-top: 1rem;
+}
+
+// Infinite scroll loader
+.paintings-loader {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem 0;
+  color: var(--color-meta);
+  font-size: 0.9rem;
+}
+
+.loader-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent-2);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

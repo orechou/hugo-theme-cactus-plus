@@ -1,0 +1,66 @@
+{{ define "main" }}
+<article class="painting-single">
+  <div class="painting-image">
+    {{ if .Params.image }}
+    <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+    {{ end }}
+  </div>
+
+  <header class="painting-header">
+    <h1>{{ .Title }}</h1>
+    <div class="painting-meta">
+      <time datetime="{{ time .Date }}">{{ .Date.Format (.Site.Params.dateFormat | default "2006-01-02") }}</time>
+      {{ with .Params.model }}
+      <span class="meta-sep">·</span>
+      <span class="painting-model">{{ . }}</span>
+      {{ end }}
+    </div>
+  </header>
+
+  {{ if or .Params.prompt .Params.negative_prompt .Params.parameters }}
+  <div class="painting-info">
+    {{ with .Params.prompt }}
+    <div class="painting-info-item">
+      <h3>{{ i18n "paintings.prompt" }}</h3>
+      <div class="painting-prompt">{{ . }}</div>
+    </div>
+    {{ end }}
+
+    {{ with .Params.negative_prompt }}
+    <div class="painting-info-item">
+      <h3>{{ i18n "paintings.negative_prompt" }}</h3>
+      <div class="painting-prompt">{{ . }}</div>
+    </div>
+    {{ end }}
+
+    {{ with .Params.parameters }}
+    <div class="painting-info-item">
+      <h3>{{ i18n "paintings.parameters" }}</h3>
+      <table class="painting-params">
+        {{ range $key, $val := . }}
+        <tr>
+          <td class="param-key">{{ $key }}</td>
+          <td class="param-val">{{ $val }}</td>
+        </tr>
+        {{ end }}
+      </table>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  {{ with .Params.tags }}
+  <div class="painting-tags">
+    {{ range . }}
+    <span class="painting-tag">{{ . }}</span>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  {{ if .Content }}
+  <div class="content painting-content">
+    {{ .Content }}
+  </div>
+  {{ end }}
+</article>
+{{ end }}

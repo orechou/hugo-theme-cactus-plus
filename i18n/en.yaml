@@ -70,3 +70,18 @@
 
 - id: diary.untitled
   translation: "Untitled"
+
+- id: paintings.title
+  translation: "Paintings"
+
+- id: paintings.model
+  translation: "Model"
+
+- id: paintings.prompt
+  translation: "Prompt"
+
+- id: paintings.negative_prompt
+  translation: "Negative Prompt"
+
+- id: paintings.parameters
+  translation: "Parameters"

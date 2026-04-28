@@ -1,0 +1,56 @@
+{{ define "main" }}
+{{ $allTags := slice }}
+{{ range .Pages }}
+  {{ with .Params.tags }}
+    {{ $allTags = $allTags | append . }}
+  {{ end }}
+{{ end }}
+{{ $uniqueTags := $allTags | uniq | sort }}
+{{ $pages := sort .Paginator.Pages "Date" "desc" }}
+
+<div id="paintings"
+     data-next-page="{{ if .Paginator.HasNext }}{{ .Paginator.Next.URL }}{{ end }}">
+  <div class="paintings-filter">
+    <button class="painting-filter-tag active" data-filter="">All</button>
+    {{ range $uniqueTags }}
+    <button class="painting-filter-tag" data-filter="{{ . }}">{{ . }}</button>
+    {{ end }}
+  </div>
+  <div class="paintings-masonry">
+    {{ range seq 3 }}
+    <div class="paintings-column">
+      {{ $colIndex := sub . 1 }}
+      {{ range $i, $p := $pages }}
+        {{ if eq (mod $i 3) $colIndex }}
+        <div class="painting-card" data-tags="{{ if $p.Params.tags }}{{ delimit $p.Params.tags "," }}{{ end }}">
+          <a href="{{ $p.Permalink }}" class="painting-card-link"></a>
+          <div class="painting-card-image">
+            {{ if $p.Params.image }}
+            <img src="{{ $p.Params.image }}" alt="{{ $p.Title }}" loading="lazy" decoding="async">
+            {{ else }}
+            <div class="painting-placeholder">🎨</div>
+            {{ end }}
+          </div>
+          <div class="painting-card-overlay">
+            <h3 class="painting-card-title">{{ $p.Title }}</h3>
+            {{ with $p.Params.tags }}
+            <div class="painting-card-tags">
+              {{ range first 3 . }}
+              <span class="painting-tag">{{ . }}</span>
+              {{ end }}
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+  <div class="paintings-loader" hidden>
+    <span class="loader-spinner"></span>
+    <span class="loader-text">Loading...</span>
+  </div>
+</div>
+<script src={{ "js/paintings.js" | relURL }}></script>
+{{ end }}

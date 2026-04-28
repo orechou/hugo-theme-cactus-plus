@@ -70,3 +70,18 @@
 
 - id: diary.untitled
   translation: "无标题"
+
+- id: paintings.title
+  translation: "画作"
+
+- id: paintings.model
+  translation: "模型"
+
+- id: paintings.prompt
+  translation: "提示词"
+
+- id: paintings.negative_prompt
+  translation: "反向提示词"
+
+- id: paintings.parameters
+  translation: "生成参数"
