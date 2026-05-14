@@ -1,8 +1,8 @@
 // Theme toggle button styles
 .theme-switcher {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  top: 16px;
+  left: 16px;
   z-index: 1000;
 }
 
@@ -142,8 +142,8 @@ html.theme-dark .theme-toggle-switch::after,
 // Mobile responsiveness
 @media screen and (max-width: 480px) {
   .theme-switcher {
-    bottom: 20px;
-    right: 20px;
+    top: 14px;
+    right: 14px;
   }
 
   .theme-toggle-switch .switch-track {

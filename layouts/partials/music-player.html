@@ -1,0 +1,8 @@
+{{ if .Site.Params.music.enabled }}
+{{ $music := .Site.Data.music }}
+{{ if $music }}
+<script>window.musicData = {{ jsonify $music | safeJS }};</script>
+<audio id="music-player-audio" style="display:none"></audio>
+<script src={{ "js/music-player.js" | relURL }} defer></script>
+{{ end }}
+{{ end }}

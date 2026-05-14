@@ -63,3 +63,6 @@
 
 - id: code.copied
   translation: "Copiado!"
+
+- id: music.title
+  translation: "Música"

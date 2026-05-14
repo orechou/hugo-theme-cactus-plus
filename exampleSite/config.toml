@@ -89,6 +89,10 @@ weight = 6
   [params.paintings]
   paintingsPerPage = 12
 
+  # Music player configuration
+  [params.music]
+    enabled = true
+
   # Social links (optional)
   [[params.social]]
     name = "github"

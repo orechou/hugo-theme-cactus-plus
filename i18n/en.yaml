@@ -85,3 +85,6 @@
 
 - id: paintings.parameters
   translation: "Parameters"
+
+- id: music.title
+  translation: "Music"

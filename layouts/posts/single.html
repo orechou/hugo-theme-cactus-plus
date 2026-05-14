@@ -94,6 +94,7 @@
 
 <link rel="stylesheet" href={{ "/lib/font-awesome/css/all.min.css" | relURL }}>
 <script src={{ "/js/main.js" | relURL }} defer></script>
+{{ partial "music-player.html" . }}
 {{ if not (isset site.Params "disablecopy") }}
 <script src={{ "js/code-copy.js"  | relURL }} defer></script>
 {{ end }}

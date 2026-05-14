@@ -63,3 +63,6 @@
 
 - id: code.copied
   translation: "복사됨!"
+
+- id: music.title
+  translation: "음악"

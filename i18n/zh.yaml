@@ -85,3 +85,6 @@
 
 - id: paintings.parameters
   translation: "生成参数"
+
+- id: music.title
+  translation: "音乐"

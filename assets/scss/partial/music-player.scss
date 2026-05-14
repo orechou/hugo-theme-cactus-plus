@@ -1,0 +1,248 @@
+// Music Player - Vinyl record + Tonearm + Hover tooltip
+
+@keyframes music-player-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+// ── Vinyl Button (record player) ──
+
+.music-player-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 56px;
+  height: 56px;
+  z-index: 999;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+
+  &:hover .music-player-vinyl {
+    transform: scale(1.05);
+  }
+
+  &--playing .music-player-vinyl {
+    animation: music-player-spin 2s linear infinite;
+  }
+
+  &--playing .music-player-arm {
+    transform: rotate(22deg);
+  }
+
+  &:hover .music-player-tooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+// ── Vinyl Record ──
+
+.music-player-vinyl {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #111;
+  position: relative;
+  transition: transform 0.2s ease;
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+  // Grooves
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+      repeating-radial-gradient(
+        circle at center,
+        transparent 0px,
+        transparent 2px,
+        rgba(255, 255, 255, 0.03) 2px,
+        rgba(255, 255, 255, 0.03) 3px
+      );
+  }
+
+  // Light reflection (asymmetric so spin is visible)
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      transparent 30%,
+      rgba(255, 255, 255, 0.18) 45%,
+      rgba(255, 255, 255, 0.06) 55%,
+      transparent 70%
+    );
+  }
+}
+
+.music-player-vinyl-groove {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &:nth-child(2) { width: 32px; height: 32px; }
+  &:nth-child(3) { width: 42px; height: 42px; }
+  &:nth-child(4) { width: 50px; height: 50px; }
+}
+
+.music-player-vinyl-label {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-link, #2bbc8a);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  opacity: 0.85;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #111;
+    transform: translate(-50%, -50%);
+  }
+}
+
+// ── Tonearm ──
+
+.music-player-arm {
+  position: absolute;
+  top: 2px;
+  right: -2px;
+  width: 24px;
+  height: 24px;
+  transform: rotate(-8deg);
+  transform-origin: top right;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.music-player-arm-base {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #555;
+  border: 1px solid #666;
+}
+
+.music-player-arm-stick {
+  position: absolute;
+  top: 6px;
+  right: 2px;
+  width: 2px;
+  height: 16px;
+  background: #888;
+  transform: rotate(20deg);
+  transform-origin: top center;
+  border-radius: 1px;
+}
+
+.music-player-arm-head {
+  position: absolute;
+  bottom: 0;
+  left: 6px;
+  width: 4px;
+  height: 6px;
+  background: #aaa;
+  border-radius: 0 0 1px 1px;
+}
+
+// ── Hover Tooltip ──
+
+.music-player-tooltip {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-right: 14px;
+  margin-top: -4px;
+  transform: translateY(-50%);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.12),
+    0 1px 4px rgba(0, 0, 0, 0.08);
+
+  // Arrow
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-left: -1px;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-left-color: var(--color-border);
+  }
+}
+
+.music-player-tooltip-cover {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--color-border);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.music-player-tooltip-meta {
+  min-width: 0;
+}
+
+.music-player-tooltip-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+
+.music-player-tooltip-artist {
+  font-size: 0.75rem;
+  color: var(--color-meta);
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+
+// ── Mobile ──
+
+@media (max-width: 480px) {
+  .music-player-btn {
+    bottom: 20px;
+    right: 20px;
+  }
+}
