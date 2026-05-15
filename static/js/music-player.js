@@ -129,16 +129,11 @@
         audio.src = song.src;
         audio.currentTime = state.position || 0;
         updateSongUI(song);
-        // Auto-play on page load
-        audio.play().catch(function () {});
       } else {
-        // No saved state — load first song and auto-play
         loadSong(0);
-        audio.play().catch(function () {});
       }
     } catch (e) {
       loadSong(0);
-      audio.play().catch(function () {});
     }
   }
 

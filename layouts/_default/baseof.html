@@ -2,7 +2,7 @@
 <html lang="{{ .Site.LanguageCode }}">
 {{ partial "head.html" . }}
 <body class="max-width mx-auto px3 ltr">
-  <!-- Theme switcher (fixed in top-right corner) -->
+  <!-- Theme switcher (fixed in top-left corner) -->
   <div class="theme-switcher">
     <!-- JavaScript will insert toggle button here -->
   </div>
@@ -11,15 +11,16 @@
 
     {{ partial "header.html" . }}
 
-    {{ block "main" . }}
-    {{ end }}
+    {{ block "main" . }}{{ end }}
 
     {{ partial "footer.html" . }}
 
   </div>
+
 </body>
 
 <link rel="stylesheet" href={{ "lib/font-awesome/css/all.min.css" | relURL }}>
 <script src={{ "js/main.js" | relURL }} defer></script>
 {{ partial "music-player.html" . }}
+<script src={{ "/js/spa-router.js" | relURL }}></script>
 </html>

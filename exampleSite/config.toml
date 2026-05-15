@@ -70,6 +70,7 @@ weight = 6
   # Post settings
   showReadTime = true
   dateFormat = "2006-01-02"
+  tocInline = true
 
   # Comments system (optional)
   [params.comments]
