@@ -31,19 +31,27 @@
         {{ $readTime }} minute read
       </div>
       {{ end }}
-      {{ if and (isset .Params "categories") (gt (len .Params.categories) 0) }}
+      {{ $cats := slice }}
+      {{ if isset .Params "categories" }}
+        {{ if reflect.IsSlice .Params.categories }}{{ $cats = .Params.categories }}{{ else }}{{ $cats = slice .Params.categories }}{{ end }}
+      {{ end }}
+      {{ if gt (len $cats) 0 }}
       <div class="article-category">
           <i class="fas fa-archive"></i>
-          {{ range $index, $value := .Params.categories }}
+          {{ range $index, $value := $cats }}
           {{ if gt $index 0 }} {{ print ", " }} {{ end }}
           <a class="category-link" href="{{ "/categories/" | relLangURL }}{{ $value | urlize }}">{{ $value }}</a>
           {{ end }}
       </div>
       {{ end }}
-      {{ if and (isset .Params "tags") (gt (len .Params.tags) 0) }}
+      {{ $tags := slice }}
+      {{ if isset .Params "tags" }}
+        {{ if reflect.IsSlice .Params.tags }}{{ $tags = .Params.tags }}{{ else }}{{ $tags = slice .Params.tags }}{{ end }}
+      {{ end }}
+      {{ if gt (len $tags) 0 }}
       <div class="article-tag">
           <i class="fas fa-tag"></i>
-          {{ range $index, $value := .Params.tags }}
+          {{ range $index, $value := $tags }}
           {{ if gt $index 0 }} {{ print ", " }} {{ end }}
           <a class="tag-link" href="{{ "/tags/" | relLangURL }}{{ $value | urlize }}" rel="tag">{{ $value }}</a>
           {{ end }}
