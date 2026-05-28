@@ -66,3 +66,57 @@
 
 - id: music.title
   translation: "Musique"
+
+- id: neodb.title
+  translation: "Livres, Films & Musique"
+
+- id: neodb.subtitle
+  translation: "Mon journal de lecture, visionnage et écoute"
+
+- id: neodb.filterAll
+  translation: "Tout"
+
+- id: neodb.filterBook
+  translation: "Livres"
+
+- id: neodb.filterMovie
+  translation: "Films"
+
+- id: neodb.filterTV
+  translation: "Séries"
+
+- id: neodb.filterMusic
+  translation: "Musique"
+
+- id: neodb.filterGame
+  translation: "Jeux"
+
+- id: neodb.typeComplete
+  translation: "Terminé"
+
+- id: neodb.typeProgress
+  translation: "En cours"
+
+- id: neodb.typeWishlist
+  translation: "Liste de souhaits"
+
+- id: neodb.loadMore
+  translation: "Charger plus"
+
+- id: neodb.loading
+  translation: "Chargement..."
+
+- id: neodb.noResults
+  translation: "Aucun enregistrement trouvé"
+
+- id: neodb.error
+  translation: "Échec du chargement. Veuillez réessayer plus tard."
+
+- id: neodb.rating
+  translation: "Note"
+
+- id: neodb.myRating
+  translation: "Ma note"
+
+- id: neodb.userComment
+  translation: "Commentaire"

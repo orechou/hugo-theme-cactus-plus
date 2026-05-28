@@ -21,14 +21,19 @@ url = "/books"
 weight = 3
 
 [[menu.main]]
+name = "书影音"
+url = "/neodb"
+weight = 4
+
+[[menu.main]]
 name = "Diary"
 url = "/diary"
-weight = 4
+weight = 5
 
 [[menu.main]]
 name = "Paintings"
 url = "/paintings"
-weight = 5
+weight = 6
 
 # [[menu.main]]
 # name = "Tags"
@@ -38,7 +43,7 @@ weight = 5
 [[menu.main]]
 name = "About"
 url = "/about"
-weight = 6
+weight = 7
 
 # Pagination
 [pagination]
@@ -93,6 +98,14 @@ weight = 6
   # Music player configuration
   [params.music]
     enabled = true
+
+  # NeoDB configuration
+  # 1. Deploy the Cloudflare Worker from neodb-worker.js
+  # 2. Set NEODB_TOKEN env var in your Worker settings
+  # 3. Set apiUrl to your Worker URL below
+  [params.neodb]
+    enabled = true
+    apiUrl = "https://your-worker-name.workers.dev"
 
   # Social links (optional)
   [[params.social]]

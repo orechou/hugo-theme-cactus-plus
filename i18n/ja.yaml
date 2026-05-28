@@ -66,3 +66,57 @@
 
 - id: music.title
   translation: "音楽"
+
+- id: neodb.title
+  translation: "書影音"
+
+- id: neodb.subtitle
+  translation: "読書・視聴・鑑賞の記録"
+
+- id: neodb.filterAll
+  translation: "すべて"
+
+- id: neodb.filterBook
+  translation: "書籍"
+
+- id: neodb.filterMovie
+  translation: "映画"
+
+- id: neodb.filterTV
+  translation: "テレビ"
+
+- id: neodb.filterMusic
+  translation: "音楽"
+
+- id: neodb.filterGame
+  translation: "ゲーム"
+
+- id: neodb.typeComplete
+  translation: "完了"
+
+- id: neodb.typeProgress
+  translation: "進行中"
+
+- id: neodb.typeWishlist
+  translation: "ウィッシュリスト"
+
+- id: neodb.loadMore
+  translation: "もっと見る"
+
+- id: neodb.loading
+  translation: "読み込み中..."
+
+- id: neodb.noResults
+  translation: "記録が見つかりませんでした"
+
+- id: neodb.error
+  translation: "読み込みに失敗しました。後でもう一度お試しください。"
+
+- id: neodb.rating
+  translation: "評価"
+
+- id: neodb.myRating
+  translation: "私の評価"
+
+- id: neodb.userComment
+  translation: "コメント"

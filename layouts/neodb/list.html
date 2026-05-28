@@ -1,0 +1,64 @@
+{{ define "main" }}
+{{ if .Site.Params.neodb.enabled }}
+
+{{ $cfg := dict "apiUrl" (.Site.Params.neodb.apiUrl | default "") "labels" (dict
+  "filterAll" (i18n "neodb.filterAll")
+  "filterBook" (i18n "neodb.filterBook")
+  "filterMovie" (i18n "neodb.filterMovie")
+  "filterTV" (i18n "neodb.filterTV")
+  "filterMusic" (i18n "neodb.filterMusic")
+  "filterGame" (i18n "neodb.filterGame")
+  "typeComplete" (i18n "neodb.typeComplete")
+  "typeProgress" (i18n "neodb.typeProgress")
+  "typeWishlist" (i18n "neodb.typeWishlist")
+  "loadMore" (i18n "neodb.loadMore")
+  "loading" (i18n "neodb.loading")
+  "noResults" (i18n "neodb.noResults")
+  "error" (i18n "neodb.error")
+  "rating" (i18n "neodb.rating")
+  "myRating" (i18n "neodb.myRating")
+  "userComment" (i18n "neodb.userComment")
+) }}
+<script>window.neodbConfig = {{ jsonify $cfg | safeJS }};
+if (typeof window.initNeoDB === 'function') {
+  window.initNeoDB();
+} else {
+  var s = document.createElement('script');
+  s.src = {{ "js/neodb.js" | relURL }};
+  s.onload = function() { window.initNeoDB(); };
+  document.body.appendChild(s);
+}
+</script>
+
+<div id="neodb">
+  <div class="neodb-header">
+    <h1>{{ i18n "neodb.title" }}</h1>
+    <p class="neodb-subtitle">{{ i18n "neodb.subtitle" }}</p>
+  </div>
+
+  <div class="neodb-filters">
+    <div class="neodb-filter-group neodb-category-filter"></div>
+    <div class="neodb-filter-group neodb-type-filter"></div>
+  </div>
+
+  <div class="neodb-grid"></div>
+
+  <div class="neodb-status">
+    <div class="neodb-loader" hidden>
+      <span class="loader-spinner"></span>
+      <span class="loader-text"></span>
+    </div>
+    <button class="neodb-load-more" hidden></button>
+    <p class="neodb-error" hidden></p>
+    <p class="neodb-no-results" hidden></p>
+  </div>
+</div>
+
+<noscript>
+  <div class="neodb-noscript">
+    <p>{{ i18n "neodb.noResults" }}</p>
+  </div>
+</noscript>
+
+{{ end }}
+{{ end }}

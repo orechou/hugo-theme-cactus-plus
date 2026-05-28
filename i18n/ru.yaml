@@ -66,3 +66,57 @@
 
 - id: music.title
   translation: "Музыка"
+
+- id: neodb.title
+  translation: "Книги, Фильмы и Музыка"
+
+- id: neodb.subtitle
+  translation: "Мой журнал чтения, просмотра и прослушивания"
+
+- id: neodb.filterAll
+  translation: "Все"
+
+- id: neodb.filterBook
+  translation: "Книги"
+
+- id: neodb.filterMovie
+  translation: "Фильмы"
+
+- id: neodb.filterTV
+  translation: "Сериалы"
+
+- id: neodb.filterMusic
+  translation: "Музыка"
+
+- id: neodb.filterGame
+  translation: "Игры"
+
+- id: neodb.typeComplete
+  translation: "Завершено"
+
+- id: neodb.typeProgress
+  translation: "В процессе"
+
+- id: neodb.typeWishlist
+  translation: "Список желаний"
+
+- id: neodb.loadMore
+  translation: "Загрузить ещё"
+
+- id: neodb.loading
+  translation: "Загрузка..."
+
+- id: neodb.noResults
+  translation: "Записи не найдены"
+
+- id: neodb.error
+  translation: "Не удалось загрузить. Попробуйте позже."
+
+- id: neodb.rating
+  translation: "Оценка"
+
+- id: neodb.myRating
+  translation: "Моя оценка"
+
+- id: neodb.userComment
+  translation: "Комментарий"

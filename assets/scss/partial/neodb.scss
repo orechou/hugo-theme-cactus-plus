@@ -1,0 +1,318 @@
+// NeoDB Section (Books/Movies/Music)
+
+#neodb {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  // Override theme's global .content a:hover underline
+  a, a:hover, a:focus, a:active {
+    background-image: none;
+  }
+}
+
+.neodb-header {
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    margin: 0 0 0.3rem 0;
+    color: var(--color-text);
+  }
+
+  .neodb-subtitle {
+    font-size: 0.95rem;
+    color: var(--color-meta);
+    margin: 0;
+  }
+}
+
+// Filter bars
+.neodb-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.neodb-filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.neodb-filter-btn {
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--color-meta);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+
+  &:hover {
+    color: var(--color-text);
+    border-color: var(--color-text);
+  }
+
+  &.active {
+    color: #fff;
+    background: #6B8E23;
+    border-color: #6B8E23;
+  }
+}
+
+.neodb-type-filter {
+  margin-left: auto;
+
+  @media (max-width: 640px) {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+// Grid — 5 columns
+.neodb-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem;
+}
+
+// Card
+.neodb-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+    color: inherit;
+    text-decoration: none;
+
+    .neodb-card-cover img {
+      transform: scale(1.08);
+    }
+
+    .neodb-card-title {
+      color: #6B8E23;
+    }
+  }
+
+  // Kill theme's global link underline inside cards
+  &:hover,
+  &:link,
+  &:visited,
+  &:active,
+  &:focus {
+    background-image: none;
+  }
+
+  h3, .neodb-card-title, .neodb-card-meta, .neodb-stars, .neodb-rating-value, .neodb-my-rating {
+    background-image: none;
+  }
+}
+
+.neodb-card-cover {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background: var(--color-border);
+  border-radius: 8px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: block;
+  }
+}
+
+.neodb-cover-placeholder {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 2 / 3;
+  background: linear-gradient(135deg, #6B8E23, #8FBF4A);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+}
+
+.neodb-card-body {
+  padding: 0.6rem 0.15rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.neodb-card-title {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.neodb-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+}
+
+.neodb-stars {
+  display: flex;
+
+  .star {
+    color: #D3D3D3;
+    font-size: 0.7rem;
+
+    &.filled {
+      color: #FFA500;
+    }
+  }
+}
+
+.neodb-rating-value {
+  font-size: 0.7rem;
+  color: var(--color-meta);
+}
+
+.neodb-my-rating {
+  font-size: 0.65rem;
+  color: #FFA500;
+  background: rgba(255, 165, 0, 0.1);
+  padding: 0.05rem 0.3rem;
+  border-radius: 8px;
+}
+
+// Status area
+.neodb-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+  gap: 1rem;
+}
+
+.neodb-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--color-meta);
+  font-size: 0.9rem;
+
+  &[hidden] {
+    display: none;
+  }
+
+  .loader-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-border);
+    border-top-color: #6B8E23;
+    border-radius: 50%;
+    animation: neodb-spin 0.8s linear infinite;
+  }
+}
+
+@keyframes neodb-spin {
+  to { transform: rotate(360deg); }
+}
+
+.neodb-load-more {
+  padding: 0.5rem 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #6B8E23;
+    border-color: #6B8E23;
+    color: #fff;
+  }
+}
+
+.neodb-error {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin: 0;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.neodb-no-results {
+  color: var(--color-meta);
+  font-size: 0.9rem;
+  margin: 0;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.neodb-noscript {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--color-meta);
+}
+
+// Responsive
+@media (max-width: 1100px) {
+  .neodb-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .neodb-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .neodb-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .neodb-filters {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .neodb-type-filter {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .neodb-grid {
+    grid-template-columns: 1fr;
+  }
+}

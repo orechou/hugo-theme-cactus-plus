@@ -88,3 +88,57 @@
 
 - id: music.title
   translation: "音乐"
+
+- id: neodb.title
+  translation: "书影音"
+
+- id: neodb.subtitle
+  translation: "我的阅读、观影与听歌记录"
+
+- id: neodb.filterAll
+  translation: "全部"
+
+- id: neodb.filterBook
+  translation: "读书"
+
+- id: neodb.filterMovie
+  translation: "电影"
+
+- id: neodb.filterTV
+  translation: "剧集"
+
+- id: neodb.filterMusic
+  translation: "音乐"
+
+- id: neodb.filterGame
+  translation: "游戏"
+
+- id: neodb.typeComplete
+  translation: "看过"
+
+- id: neodb.typeProgress
+  translation: "在看"
+
+- id: neodb.typeWishlist
+  translation: "想看"
+
+- id: neodb.loadMore
+  translation: "加载更多"
+
+- id: neodb.loading
+  translation: "加载中..."
+
+- id: neodb.noResults
+  translation: "暂无记录"
+
+- id: neodb.error
+  translation: "加载失败，请稍后重试"
+
+- id: neodb.rating
+  translation: "评分"
+
+- id: neodb.myRating
+  translation: "我的评分"
+
+- id: neodb.userComment
+  translation: "短评"

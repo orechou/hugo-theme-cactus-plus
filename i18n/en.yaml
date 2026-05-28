@@ -88,3 +88,57 @@
 
 - id: music.title
   translation: "Music"
+
+- id: neodb.title
+  translation: "Library"
+
+- id: neodb.subtitle
+  translation: "My reading, watching and listening log"
+
+- id: neodb.filterAll
+  translation: "All"
+
+- id: neodb.filterBook
+  translation: "Books"
+
+- id: neodb.filterMovie
+  translation: "Movies"
+
+- id: neodb.filterTV
+  translation: "TV"
+
+- id: neodb.filterMusic
+  translation: "Music"
+
+- id: neodb.filterGame
+  translation: "Games"
+
+- id: neodb.typeComplete
+  translation: "Completed"
+
+- id: neodb.typeProgress
+  translation: "In Progress"
+
+- id: neodb.typeWishlist
+  translation: "Wishlist"
+
+- id: neodb.loadMore
+  translation: "Load More"
+
+- id: neodb.loading
+  translation: "Loading..."
+
+- id: neodb.noResults
+  translation: "No records found"
+
+- id: neodb.error
+  translation: "Failed to load. Please try again later."
+
+- id: neodb.rating
+  translation: "Rating"
+
+- id: neodb.myRating
+  translation: "My Rating"
+
+- id: neodb.userComment
+  translation: "Comment"

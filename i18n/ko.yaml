@@ -66,3 +66,57 @@
 
 - id: music.title
   translation: "음악"
+
+- id: neodb.title
+  translation: "책·영화·음악"
+
+- id: neodb.subtitle
+  translation: "나의 독서, 시청, 감상 기록"
+
+- id: neodb.filterAll
+  translation: "전체"
+
+- id: neodb.filterBook
+  translation: "도서"
+
+- id: neodb.filterMovie
+  translation: "영화"
+
+- id: neodb.filterTV
+  translation: "TV"
+
+- id: neodb.filterMusic
+  translation: "음악"
+
+- id: neodb.filterGame
+  translation: "게임"
+
+- id: neodb.typeComplete
+  translation: "완료"
+
+- id: neodb.typeProgress
+  translation: "진행 중"
+
+- id: neodb.typeWishlist
+  translation: "위시리스트"
+
+- id: neodb.loadMore
+  translation: "더 보기"
+
+- id: neodb.loading
+  translation: "불러오는 중..."
+
+- id: neodb.noResults
+  translation: "기록을 찾을 수 없습니다"
+
+- id: neodb.error
+  translation: "불러오기에 실패했습니다. 나중에 다시 시도해 주세요."
+
+- id: neodb.rating
+  translation: "평점"
+
+- id: neodb.myRating
+  translation: "내 평점"
+
+- id: neodb.userComment
+  translation: "코멘트"

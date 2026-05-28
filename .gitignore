@@ -8,3 +8,6 @@ public/
 # Claude Code
 .claude/
 .gstack/
+
+# Cloudflare Wrangler
+.wrangler/

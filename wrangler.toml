@@ -1,0 +1,7 @@
+name = "neodb-proxy"
+main = "neodb-worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+# Do NOT put your token here. Use wrangler secret instead:
+# wrangler secret put NEODB_TOKEN
