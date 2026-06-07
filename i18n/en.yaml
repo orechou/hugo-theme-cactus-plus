@@ -142,3 +142,21 @@
 
 - id: neodb.userComment
   translation: "Comment"
+
+- id: timeline.totalLabel
+  translation: "posts, keep writing"
+
+- id: timeline.dayOfYearLabel
+  translation: "Day of year"
+
+- id: timeline.yearProgressLabel
+  translation: "Year progress"
+
+- id: timeline.dayProgressLabel
+  translation: "Day progress"
+
+- id: timeline.motto
+  translation: "Live in the moment, cherish the present"
+
+- id: timeline.untitled
+  translation: "Untitled"

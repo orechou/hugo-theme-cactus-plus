@@ -1,30 +1,71 @@
 {{ define "main" }}
-<div id="archive">
-  <ul class="post-list">
+<div id="timeline">
+  {{ $pages := sort .Pages "Date" "desc" }}
 
-  {{ $pages := .Paginator.Pages }}
-  {{ if .Site.Params.showAllPostsArchive }}
-    {{ $pages = .Pages }}
+  {{/* Pre-compute year -> count map */}}
+  {{ $.Scratch.Set "yearCounts" dict }}
+  {{ range $pages }}
+    {{ $y := .Date.Format "2006" }}
+    {{ $counts := $.Scratch.Get "yearCounts" }}
+    {{ $c := 0 }}
+    {{ with index $counts $y }}{{ $c = . }}{{ end }}
+    {{ $.Scratch.Set "yearCounts" (merge $counts (dict $y (add $c 1))) }}
   {{ end }}
 
-  {{ range (sort $pages "Date" "desc") }}
-    {{ $pageYear := (.Date.Format "2006") }}
-    {{ if (ne $pageYear ($.Scratch.Get "year")) }}
-    {{ $.Scratch.Set "year" $pageYear }}
-    <h2>{{ $pageYear }}</h2>
+  <div class="timeline-header">
+    <span class="timeline-total-count">{{ len $pages }}</span>
+    <span class="timeline-total-label">{{ i18n "timeline.totalLabel" }}</span>
+  </div>
+
+  <div class="timeline-stats" id="timeline-stats">
+    <div class="timeline-stat-item">
+      <span class="timeline-stat-value" id="timeline-day-of-year">-</span>
+      <span class="timeline-stat-label">{{ i18n "timeline.dayOfYearLabel" }}</span>
+    </div>
+    <div class="timeline-stat-item">
+      <span class="timeline-stat-value" id="timeline-year-progress">-</span>
+      <span class="timeline-stat-label">{{ i18n "timeline.yearProgressLabel" }}</span>
+    </div>
+    <div class="timeline-stat-item">
+      <span class="timeline-stat-value" id="timeline-day-progress">-</span>
+      <span class="timeline-stat-label">{{ i18n "timeline.dayProgressLabel" }}</span>
+    </div>
+  </div>
+
+  <p class="timeline-motto">{{ i18n "timeline.motto" }}</p>
+
+  {{ $currentYear := "" }}
+  {{ range $pages }}
+    {{ $year := .Date.Format "2006" }}
+    {{ if ne $year $currentYear }}
+      {{ $currentYear = $year }}
+      {{ $count := 0 }}
+      {{ with index ($.Scratch.Get "yearCounts") $year }}{{ $count = . }}{{ end }}
+      <h4 class="timeline-year-header">{{ $year }}({{ $count }})</h4>
     {{ end }}
-    <li class="post-item">
-      <div class="meta">
-        <time datetime="{{ time .Date }}" itemprop="datePublished">{{ .Date.Format (.Site.Params.dateFormat | default "2006-01-02") }}</time>
-      </div>
-      <span>
-        <a class="" href="{{ .Permalink }}">{{ if .Title }} {{ .Title }} {{ else }} Untitled {{ end }}</a>
+    <div class="timeline-item">
+      <span class="timeline-date">{{ .Date.Format "01/02" }}</span>
+      <a href="{{ .Permalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ i18n "timeline.untitled" }}{{ end }}</a>
+      <span class="timeline-section-info">
+        {{- with .Params.categories }}{{ delimit . "/" }}{{- end -}}
       </span>
-    </li>
-    {{ end }}
-  </ul>
-  {{ if not (site.Params.showAllPostsArchive | default false) }}
-    {{ partial "pagination.html" . }}
+    </div>
   {{ end }}
 </div>
+
+<script>
+window.timelineConfig = {{ jsonify (dict
+  "dayOfYear" (i18n "timeline.dayOfYear")
+  "yearProgress" (i18n "timeline.yearProgress")
+  "dayProgress" (i18n "timeline.dayProgress")
+) | safeJS }};
+if (typeof window.initTimeline === 'function') {
+  window.initTimeline();
+} else {
+  var s = document.createElement('script');
+  s.src = {{ "js/timeline.js" | relURL }};
+  s.onload = function() { window.initTimeline(); };
+  document.body.appendChild(s);
+}
+</script>
 {{ end }}

@@ -142,3 +142,21 @@
 
 - id: neodb.userComment
   translation: "短评"
+
+- id: timeline.totalLabel
+  translation: "篇，再接再厉"
+
+- id: timeline.dayOfYearLabel
+  translation: "今年第几天"
+
+- id: timeline.yearProgressLabel
+  translation: "年度进度"
+
+- id: timeline.dayProgressLabel
+  translation: "今日进度"
+
+- id: timeline.motto
+  translation: "活在当下，珍惜眼下"
+
+- id: timeline.untitled
+  translation: "无标题"

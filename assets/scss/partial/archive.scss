@@ -1,31 +1,116 @@
-#archive {
-  .post-list {
-    padding: 0;
+#timeline {
+  margin-top: 3rem;
 
-    .post-item {
-      margin-bottom: 1rem;
-      margin-left: 0;
-      list-style-type: none;
+  .timeline-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    margin-bottom: 1.5rem;
 
-      .meta {
-        display: block;
-        margin-right: 16px;
-        min-width: 100px;
-        color: $color-meta;
-        font-size: 14px;
+    .timeline-total-count {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .timeline-total-label {
+      font-size: 0.95rem;
+      color: var(--color-accent-3);
+    }
+  }
+
+  .timeline-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 1.5rem;
+
+    .timeline-stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .timeline-stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .timeline-stat-label {
+        font-size: 0.8rem;
+        color: var(--color-accent-3);
+      }
+
+      &:first-child .timeline-stat-value {
+        color: var(--color-accent-1);
       }
     }
   }
-  @media (min-width: 480px) {
-    .post-list {
-      .post-item {
-        display: flex;
-        margin-bottom: 5px;
-        margin-left: 1rem;
 
-        .meta {
-          text-align: left;
-        }
+  .timeline-motto {
+    font-style: italic;
+    color: var(--color-accent-3);
+    margin-bottom: 2rem;
+  }
+
+  .timeline-year-header {
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-bottom: 0.4rem;
+    padding: 0;
+    list-style-type: none;
+    gap: 0.5rem;
+
+    .timeline-date {
+      color: $color-meta;
+      font-size: 14px;
+      min-width: 45px;
+      font-family: $font-family-mono;
+    }
+
+    a {
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .timeline-section-info {
+      color: var(--color-accent-3);
+      font-size: 0.8rem;
+      margin-left: auto;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  #timeline {
+    .timeline-header .timeline-total-count {
+      font-size: 2rem;
+    }
+
+    .timeline-stats {
+      gap: 1.5rem;
+
+      .timeline-stat-item .timeline-stat-value {
+        font-size: 1.2rem;
+      }
+    }
+
+    .timeline-item {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+
+      .timeline-section-info {
+        margin-left: 0;
+        margin-top: 0.15rem;
       }
     }
   }
