@@ -74,6 +74,12 @@
 - id: paintings.title
   translation: "Paintings"
 
+- id: paintings.filterAll
+  translation: "All"
+
+- id: paintings.loading
+  translation: "Loading..."
+
 - id: paintings.model
   translation: "Model"
 
@@ -160,3 +166,12 @@
 
 - id: timeline.untitled
   translation: "Untitled"
+
+- id: error.404Title
+  translation: "Page Not Found"
+
+- id: error.404Message
+  translation: "The page you are looking for doesn't exist or has been moved."
+
+- id: error.404Home
+  translation: "Go Home"

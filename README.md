@@ -12,13 +12,18 @@ A modern, clean, and responsive Hugo theme for personal blogs with dark/light mo
 - **Table of Contents** - Auto-generated, multi-level TOC with smooth scrolling
 - **Responsive Design** - Optimized for desktop, tablet, and mobile
 - **Syntax Highlighting** - Code blocks with copy button and line numbers
-- **Comments** - Support for Disqus, Utterances, or built-in comments
+- **Comments** - Support for Disqus, Utterances, or built-in (Cactus/Matrix) comments
+- **SPA Navigation** - Single-page-app style client-side routing
 - **Social Links** - Easy social media integration
 - **RSS Feed** - Built-in RSS generation
-- **Search** - Client-side search functionality
 - **MathJax** - Mathematical formula support
 - **Archive** - Chronological post listing with pagination
 - **Share Buttons** - Social media sharing for posts
+- **Music Player** - Floating vinyl-styled player with persistence
+- **Paintings Gallery** - Masonry layout with lightbox & tag filtering
+- **NeoDB Integration** - Book/movie/tv/music/game shelf via Cloudflare Worker proxy
+- **Diary** - Personal journal section
+- **Post Timeline** - Visual year-grouped timeline of all posts
 
 ## Installation
 
@@ -159,7 +164,7 @@ Enable comments globally:
   engine = "disqus"  # Options: disqus, utterances, bat_comments
 ```
 
-Or enable per post in front matter:
+Or enable per post in front matter (overrides the site setting):
 
 ```yaml
 ---
@@ -173,15 +178,31 @@ For Disqus, set your shortname:
 disqusShortname = "your-shortname"
 ```
 
-For Utterances:
+For Utterances (config is nested under `[params.comments.utterances]`):
 
 ```toml
 [params.comments]
   enabled = true
   engine = "utterances"
-  repo = "yourusername/your-repo"
-  theme = "github-light"
-  issueTerm = "pathname"
+  [params.comments.utterances]
+    repo = "yourusername/your-repo"
+    theme = "github-light"      # default
+    issueTerm = "pathname"      # default
+    label = "comments"          # default
+```
+
+For Cactus/Matrix comments (`engine = "bat_comments"`), the Cactus client
+(`latest.cactus.chat/cactus.js`) is loaded automatically. Configure your
+homeserver under `[params.comments.batcomments]`:
+
+```toml
+[params.comments]
+  enabled = true
+  engine = "bat_comments"
+  [params.comments.batcomments]
+    serverUrl = "https://matrix.cactus.chat:8448"  # default
+    serverName = "cactus.chat"                     # default
+    siteName = "your-site-name"                    # required
 ```
 
 ### Syntax Highlighting
@@ -272,10 +293,76 @@ Create `data/projects.json`:
     {
       "name": "Project Name",
       "url": "https://github.com/username/repo",
-      "desc": "Project description"
+      "desc": "Project description",
+      "icon": "📁"
     }
   ]
 }
+```
+
+### Diary
+
+Create diary entries in `content/diary/`:
+
+```yaml
+---
+title: "A Day"
+date: 2026-01-26
+location: "City"
+weather: "Sunny"
+mood: "Calm"
+---
+```
+
+Control pagination with `[params.diary] diaryPerPage`.
+
+### Paintings
+
+Create `data/paintings.json` (each item supports `title`, `date`, `image`,
+`model`, `prompt`, `negative_prompt`, `parameters`, `tags`, `description`):
+
+```json
+[
+  {
+    "title": "Dragon's Flight",
+    "image": "/images/dragon.jpg",
+    "model": "Stable Diffusion XL",
+    "prompt": "a majestic dragon ...",
+    "tags": ["dragon", "fantasy"]
+  }
+]
+```
+
+### Music Player
+
+Provide a playlist in `data/music.json` and enable it:
+
+```toml
+[params.music]
+  enabled = true
+```
+
+```json
+[
+  { "title": "Song", "artist": "Artist", "src": "/audio/song.mp3", "cover": "/images/cover.jpg" }
+]
+```
+
+The player persists playback position in `localStorage`.
+
+### NeoDB Library
+
+A client-side book/movie/TV/music/game shelf backed by NeoDB, proxied through
+a Cloudflare Worker so your API token never reaches the browser.
+
+1. Deploy the worker: `wrangler deploy` (config in `wrangler.toml`).
+2. Set `NEODB_TOKEN` in your Worker environment.
+3. Point the theme at the worker URL:
+
+```toml
+[params.neodb]
+  enabled = true
+  apiUrl = "https://your-worker-name.workers.dev"
 ```
 
 ## Features in Detail

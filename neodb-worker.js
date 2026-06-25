@@ -42,9 +42,14 @@ async function handleRequest(request) {
       }
 
       var category = url.searchParams.get('category') || '';
-      var page = url.searchParams.get('page') || '1';
 
-      var apiUrl = 'https://neodb.social/api/me/shelf/' + type + '?page=' + page;
+      var pageParam = url.searchParams.get('page') || '1';
+      var pageNum = parseInt(pageParam, 10);
+      if (!Number.isInteger(pageNum) || pageNum < 1 || pageNum > 1000) {
+        return jsonResponse({ error: 'Invalid page. Must be an integer between 1 and 1000.' }, 400);
+      }
+
+      var apiUrl = 'https://neodb.social/api/me/shelf/' + type + '?page=' + pageNum;
       if (category) {
         apiUrl += '&category=' + encodeURIComponent(category);
       }

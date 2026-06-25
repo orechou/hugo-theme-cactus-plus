@@ -1,10 +1,34 @@
-<div id="disquss_thread">
-  <script src="https://utteranc.es/client.js"
-    repo="{{ .Site.Params.Comments.Utterances.Repo }}"
-    issue-term="pathname"
-    label="{{ .Site.Params.Comments.Utterances.Label }}"
-    theme="{{ .Site.Params.Comments.Utterances.Theme }}"
-    crossorigin="anonymous"
-    async>
+{{ $repo := .Site.Params.Comments.Utterances.Repo }}
+{{ $issueTerm := .Site.Params.Comments.Utterances.IssueTerm | default "pathname" }}
+{{ $label := .Site.Params.Comments.Utterances.Label | default "comments" }}
+{{ $theme := .Site.Params.Comments.Utterances.Theme | default "github-light" }}
+{{ if $repo }}
+<div id="utterances_thread">
+  <script>
+  (function () {
+    // Re-run on SPA navigation by always (re)inserting a fresh <script src>.
+    // innerHTML-inserted scripts with a `src` are not executed by browsers,
+    // so on SPA swap we need to inject a new element via DOM API.
+    var repo = {{ $repo | jsonify }};
+    var issueTerm = {{ $issueTerm | jsonify }};
+    var label = {{ $label | jsonify }};
+    var theme = {{ $theme | jsonify }};
+
+    // Idempotency: if utteranc.es already wired up this thread, skip.
+    if (document.getElementById('utterances_thread').children.length > 0) return;
+
+    var s = document.createElement('script');
+    s.src = 'https://utteranc.es/client.js';
+    s.setAttribute('repo', repo);
+    s.setAttribute('issue-term', issueTerm);
+    s.setAttribute('label', label);
+    s.setAttribute('theme', theme);
+    s.setAttribute('crossorigin', 'anonymous');
+    s.async = true;
+    document.getElementById('utterances_thread').appendChild(s);
+  })();
   </script>
 </div>
+{{ else }}
+<!-- Utterances enabled but [params.comments.utterances] repo is not configured. -->
+{{ end }}

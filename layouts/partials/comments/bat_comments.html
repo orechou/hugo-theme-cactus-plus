@@ -1,11 +1,19 @@
 <div id="bat-comments-thread">
   <script>
-  initComments({
-    node: document.getElementById("bat-comments-thread"),
-    defaultHomeserverUrl: '{{ default "https://matrix.cactus.chat:8448" .Site.Params.Comments.Batcomments.ServerUrl }}',
-    serverName: '{{ default "cactus.chat" .Site.Params.Comments.Batcomments.ServerName }}',
-    siteName: "{{ .Site.Params.Comments.Batcomments.SiteName }}",
-    commentSectionId: "{{ .RelPermalink }}"
-  })
-</script>
+  // Defer to DOMContentLoaded so cactus.js (loaded with `defer`) has a chance
+  // to register the global `initComments` function first.
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof initComments !== 'function') {
+      console.warn('cactus.js not loaded; bat_comments disabled.');
+      return;
+    }
+    initComments({
+      node: document.getElementById('bat-comments-thread'),
+      defaultHomeserverUrl: '{{ default "https://matrix.cactus.chat:8448" .Site.Params.Comments.Batcomments.ServerUrl }}',
+      serverName: '{{ default "cactus.chat" .Site.Params.Comments.Batcomments.ServerName }}',
+      siteName: "{{ .Site.Params.Comments.Batcomments.SiteName }}",
+      commentSectionId: "{{ .RelPermalink }}"
+    });
+  });
+  </script>
 </div>

@@ -27,9 +27,8 @@
   --page-width: #{$page-width};
 }
 
-// Theme variants for runtime switching (apply to both html and body)
-html.theme-dark,
-.theme-dark {
+// Theme variants for runtime switching. Class is applied to <html> only.
+html.theme-dark {
   --color-background: #1d1f21;
   --color-footer-mobile-1: #1f2123;
   --color-footer-mobile-2: #2d2f31;
@@ -45,8 +44,7 @@ html.theme-dark,
   --color-quote: #ccffb6;
 }
 
-html.theme-light,
-.theme-light {
+html.theme-light {
   --color-background: #FFFFFF;
   --color-footer-mobile-1: #f5f5f5;
   --color-footer-mobile-2: #e5e5e5;
@@ -241,7 +239,6 @@ body {
 @import "partial/comments";
 @import "partial/footer";
 @import "partial/pagination";
-@import "partial/search";
 @import "partial/tags";
 @import "partial/tooltip";
 @import "partial/categories";

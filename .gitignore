@@ -1,5 +1,9 @@
 public/
 
+# Hugo build artifacts
+exampleSite/.hugo_build.lock
+exampleSite/resources/
+
 # macOS
 .DS_Store
 **/.DS_Store

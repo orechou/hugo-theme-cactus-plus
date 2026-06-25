@@ -1,0 +1,8 @@
+{{ define "main" }}
+<div id="not-found">
+  <h1 class="error-code">404</h1>
+  <h2 class="error-title">{{ i18n "error.404Title" | default "Page Not Found" }}</h2>
+  <p class="error-message">{{ i18n "error.404Message" | default "The page you are looking for doesn't exist or has been moved." }}</p>
+  <p class="error-back"><a href="{{ "" | absURL }}">{{ i18n "error.404Home" | default "Go Home" }}</a></p>
+</div>
+{{ end }}

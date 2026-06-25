@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
+<html lang="{{ .Site.Language.Lang }}">
 {{ partial "head.html" . }}
 <body class="max-width mx-auto px3 ltr">
   <!-- Theme switcher (fixed in top-left corner) -->
@@ -17,10 +17,10 @@
 
   </div>
 
-</body>
+  {{ partial "music-player.html" . }}
 
-<link rel="stylesheet" href={{ "lib/font-awesome/css/all.min.css" | relURL }}>
-<script src={{ "js/main.js" | relURL }} defer></script>
-{{ partial "music-player.html" . }}
-<script src={{ "/js/spa-router.js" | relURL }}></script>
+  <script src={{ "js/spa-router.js" | relURL }} defer></script>
+  <script src={{ "js/code-copy.js" | relURL }} defer></script>
+  <script src={{ "js/main.js" | relURL }} defer></script>
+</body>
 </html>

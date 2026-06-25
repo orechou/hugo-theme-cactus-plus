@@ -20,10 +20,10 @@
       </div>
       <div class="external-links">
         {{ with .Params.doubanId }}
-          <a href="https://book.douban.com/subject/{{ . }}/" target="_blank" rel="noopener" class="external-link">{{ i18n "book.doubanLink" }}</a>
+          <a href="https://book.douban.com/subject/{{ . }}/" target="_blank" rel="noopener noreferrer" class="external-link">{{ i18n "book.doubanLink" }}</a>
         {{ end }}
         {{ with .Params.neodbId }}
-          <a href="https://neodb.social/book/{{ . }}/" target="_blank" rel="noopener" class="external-link">{{ i18n "book.neodbLink" }}</a>
+          <a href="https://neodb.social/book/{{ . }}/" target="_blank" rel="noopener noreferrer" class="external-link">{{ i18n "book.neodbLink" }}</a>
         {{ end }}
       </div>
     </div>

@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $paintings := .Site.Data.paintings }}
+{{ $paintings := index hugo.Data "paintings" }}
 {{ $allTags := slice }}
 {{ range $paintings }}
   {{ with .tags }}
@@ -8,11 +8,17 @@
 {{ end }}
 {{ $uniqueTags := $allTags | uniq | sort }}
 
-<script>window.paintingsData = {{ jsonify $paintings | safeJS }};</script>
+{{ $paintingsConfig := dict "labels" (dict
+  "prompt" (i18n "paintings.prompt")
+  "negativePrompt" (i18n "paintings.negative_prompt")
+) }}
+<script>window.paintingsData = {{ jsonify $paintings | safeJS }};
+window.paintingsConfig = {{ jsonify $paintingsConfig | safeJS }};
+</script>
 
 <div id="paintings">
   <div class="paintings-filter">
-    <button class="painting-filter-tag active" data-filter="">All</button>
+    <button class="painting-filter-tag active" data-filter="">{{ i18n "paintings.filterAll" | default "All" }}</button>
     {{ range $uniqueTags }}
     <button class="painting-filter-tag" data-filter="{{ . }}">{{ . }}</button>
     {{ end }}
@@ -46,5 +52,14 @@
   </div>
 </div>
 
-<script src={{ "js/paintings.js" | relURL }}></script>
+<script>
+if (typeof window.initPaintings === 'function') {
+  window.initPaintings();
+} else {
+  var s = document.createElement('script');
+  s.src = {{ "js/paintings.js" | relURL }};
+  s.onload = function() { window.initPaintings(); };
+  document.body.appendChild(s);
+}
+</script>
 {{ end }}

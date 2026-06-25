@@ -1,21 +1,36 @@
-{{ if (not (isset .Site.Params "comments")) }}
-  {{ .Scratch.Set "enable_comments" false }}
-{{ else if (isset .Params "comments") }}
-  {{ .Scratch.Set "enable_comments" .Params.comments }}
-{{ else if (isset .Site.Params.Comments "enabled") }}
-  {{ .Scratch.Set "enable_comments" .Site.Params.Comments.Enabled }}
-{{ else }}
-  {{ .Scratch.Set "enable_comments" true }}
+{{/*
+  Resolve enable_comments with priority:
+    1. Page-level front matter (Params.comments) overrides everything.
+    2. Site-level [params.comments] map:
+       - explicit `enabled` boolean wins
+       - otherwise true if the map is non-empty
+    3. Otherwise: false.
+*/}}
+{{ $enable_comments := false }}
+{{ if (isset .Params "comments") }}
+  {{ $enable_comments = .Params.comments }}
+{{ else if (reflect.IsMap .Site.Params.Comments) }}
+  {{ if (isset .Site.Params.Comments "enabled") }}
+    {{ $enable_comments = .Site.Params.Comments.enabled }}
+  {{ else }}
+    {{ $enable_comments = true }}
+  {{ end }}
 {{ end }}
 
-{{ $enable_comments := .Scratch.Get "enable_comments" }}
+{{ $engine := "" }}
+{{ if (reflect.IsMap .Site.Params.Comments) }}
+  {{ if (isset .Site.Params.Comments "engine") }}
+    {{ $engine = .Site.Params.Comments.engine }}
+  {{ end }}
+{{ end }}
+
 {{ if $enable_comments }}
   <div class="blog-post-comments">
-    {{ if (or (not (isset .Site.Params.Comments "engine")) (eq .Site.Params.Comments.Engine "disqus")) }}
+    {{ if (or (eq $engine "") (eq $engine "disqus")) }}
       {{ partial "comments/disqus.html" . }}
-    {{ else if eq .Site.Params.Comments.Engine "utterances" }}
+    {{ else if eq $engine "utterances" }}
       {{ partial "comments/utterances.html" . }}
-    {{ else if eq .Site.Params.Comments.Engine "bat_comments" }}
+    {{ else if eq $engine "bat_comments" }}
       {{ partial "comments/bat_comments.html" . }}
     {{ end }}
   </div>

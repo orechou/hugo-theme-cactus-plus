@@ -2,8 +2,8 @@
 <div id="books">
   <div class="books-list">
     {{ $pages := where .Pages "Params.dateFinished" "!=" nil }}
-    {{ $sorted := sort $pages "Params.dateFinished" "date" "desc" }}
-    {{ range $sorted }}
+    {{ $sorted := sort $pages "Params.dateFinished" "desc" }}
+    {{ range (.Paginate $sorted).Pages }}
       {{ partial "book-card.html" . }}
     {{ end }}
   </div>
