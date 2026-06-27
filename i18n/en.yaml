@@ -175,3 +175,27 @@
 
 - id: error.404Home
   translation: "Go Home"
+
+- id: search.title
+  translation: "Search"
+
+- id: search.placeholder
+  translation: "Search posts…"
+
+- id: search.navigate
+  translation: "navigate"
+
+- id: search.open
+  translation: "open"
+
+- id: search.close
+  translation: "close"
+
+- id: search.loading
+  translation: "Loading…"
+
+- id: search.noResults
+  translation: "No results found"
+
+- id: search.error
+  translation: "Search index failed to load."

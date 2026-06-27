@@ -4,6 +4,16 @@ defaultContentLanguage = "en"
 title = "Cactus Plus Theme Demo"
 theme = "cactus-plus"
 
+# Client-side search (fuse.js).
+# Hugo requires the user to declare the JSON output format + add it to outputs.
+[outputFormats.searchindex]
+  baseName = "searchindex"
+  mediaType = "application/json"
+  isPlainText = true
+
+[outputs]
+  home = ["html", "rss", "searchindex"]
+
 # Main menu
 [[menu.main]]
 name = "Home"
@@ -97,6 +107,11 @@ weight = 7
 
   # Music player configuration
   [params.music]
+    enabled = true
+
+  # Client-side search configuration (fuse.js). Requires the searchindex
+  # output format declared above to generate /searchindex.json.
+  [params.search]
     enabled = true
 
   # NeoDB configuration

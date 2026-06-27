@@ -120,3 +120,27 @@
 
 - id: neodb.userComment
   translation: "コメント"
+
+- id: search.title
+  translation: "検索"
+
+- id: search.placeholder
+  translation: "記事を検索…"
+
+- id: search.navigate
+  translation: "移動"
+
+- id: search.open
+  translation: "開く"
+
+- id: search.close
+  translation: "閉じる"
+
+- id: search.loading
+  translation: "読み込み中…"
+
+- id: search.noResults
+  translation: "結果が見つかりません"
+
+- id: search.error
+  translation: "検索インデックスの読み込みに失敗しました。"

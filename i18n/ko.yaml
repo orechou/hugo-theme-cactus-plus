@@ -120,3 +120,27 @@
 
 - id: neodb.userComment
   translation: "코멘트"
+
+- id: search.title
+  translation: "검색"
+
+- id: search.placeholder
+  translation: "글 검색…"
+
+- id: search.navigate
+  translation: "이동"
+
+- id: search.open
+  translation: "열기"
+
+- id: search.close
+  translation: "닫기"
+
+- id: search.loading
+  translation: "불러오는 중…"
+
+- id: search.noResults
+  translation: "검색 결과가 없습니다"
+
+- id: search.error
+  translation: "검색 인덱스를 불러오지 못했습니다."

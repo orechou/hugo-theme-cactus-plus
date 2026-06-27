@@ -175,3 +175,27 @@
 
 - id: error.404Home
   translation: "返回首页"
+
+- id: search.title
+  translation: "搜索"
+
+- id: search.placeholder
+  translation: "搜索文章…"
+
+- id: search.navigate
+  translation: "选择"
+
+- id: search.open
+  translation: "打开"
+
+- id: search.close
+  translation: "关闭"
+
+- id: search.loading
+  translation: "加载中…"
+
+- id: search.noResults
+  translation: "未找到结果"
+
+- id: search.error
+  translation: "搜索索引加载失败。"

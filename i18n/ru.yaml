@@ -120,3 +120,27 @@
 
 - id: neodb.userComment
   translation: "Комментарий"
+
+- id: search.title
+  translation: "Поиск"
+
+- id: search.placeholder
+  translation: "Поиск по статьям…"
+
+- id: search.navigate
+  translation: "переход"
+
+- id: search.open
+  translation: "открыть"
+
+- id: search.close
+  translation: "закрыть"
+
+- id: search.loading
+  translation: "Загрузка…"
+
+- id: search.noResults
+  translation: "Ничего не найдено"
+
+- id: search.error
+  translation: "Не удалось загрузить индекс поиска."

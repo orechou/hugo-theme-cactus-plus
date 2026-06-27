@@ -1,0 +1,46 @@
+{{/*
+  Search command palette.
+
+  Renders only when search is enabled:  [params.search] enabled = true
+
+  The modal is injected into <body> (outside .content) so the SPA router
+  never swaps it; search.js builds/opens it and re-injects the header trigger
+  button on every `spa-content-loaded` event (the header lives inside .content
+  and is rebuilt on each SPA navigation).
+*/}}
+{{ if and (isset .Site.Params "search") .Site.Params.search.enabled }}
+<div class="search-modal" id="search-modal" hidden aria-hidden="true" data-index-url="{{ "searchindex.json" | relURL }}">
+  <div class="search-modal-overlay" data-search-close></div>
+  <div class="search-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+    <span id="search-modal-title" class="sr-only">{{ i18n "search.title" | default "Search" }}</span>
+    <div class="search-modal-header">
+      <i class="fas fa-search search-modal-icon" aria-hidden="true"></i>
+      <input
+        type="search"
+        class="search-modal-input"
+        id="search-modal-input"
+        autocomplete="off"
+        autocapitalize="off"
+        autocorrect="off"
+        spellcheck="false"
+        placeholder="{{ i18n "search.placeholder" | default "Search posts…" }}"
+        aria-label="{{ i18n "search.title" | default "Search" }}"
+        role="combobox"
+        aria-expanded="true"
+        aria-controls="search-modal-results"
+        aria-autocomplete="list"
+      >
+      <kbd class="search-modal-esc" data-search-close>ESC</kbd>
+    </div>
+    <div class="search-modal-body">
+      <ul class="search-modal-results" id="search-modal-results" role="listbox" aria-label="{{ i18n "search.title" | default "Search" }}"></ul>
+      <div class="search-modal-status" id="search-modal-status" role="status" aria-live="polite"></div>
+    </div>
+    <div class="search-modal-footer">
+      <span class="search-modal-hint"><kbd>&#8593;</kbd><kbd>&#8595;</kbd> {{ i18n "search.navigate" | default "navigate" }}</span>
+      <span class="search-modal-hint"><kbd>&#8629;</kbd> {{ i18n "search.open" | default "open" }}</span>
+      <span class="search-modal-hint"><kbd>esc</kbd> {{ i18n "search.close" | default "close" }}</span>
+    </div>
+  </div>
+</div>
+{{ end }}

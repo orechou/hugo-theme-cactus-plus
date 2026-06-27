@@ -1,0 +1,33 @@
+{{/*
+  Client-side search index for fuse.js.
+
+  Enabled by adding to the site config (Hugo requires the user to declare
+  custom output formats — the theme cannot force this):
+
+      [outputFormats.searchindex]
+        baseName = "searchindex"
+        mediaType = "application/json"
+        isPlainText = true
+
+      [outputs]
+        home = ["html", "rss", "searchindex"]
+
+  Serializes every regular (published, non-draft) page into a JSON array of
+  { title, url, section, date, content } objects. `.Plain` strips HTML so the
+  index is pure text — safe for fuse.js to tokenize.
+*/}}
+{{- $s := newScratch -}}
+{{- $s.Set "data" slice -}}
+{{- range where .Site.RegularPages "Section" "ne" "" -}}
+  {{- $summary := "" -}}
+  {{- with .Description }}{{ $summary = . | plainify }}{{ else }}{{ $summary = (.Summary | plainify) }}{{ end -}}
+  {{- $s.Add "data" (dict
+      "title"    (.Title | plainify)
+      "url"      .Permalink
+      "section"  (.Section | humanize | title)
+      "date"     (.Date.Format "2006-01-02")
+      "summary"  $summary
+      "content"  .Plain
+  ) -}}
+{{- end -}}
+{{- $s.Get "data" | jsonify -}}

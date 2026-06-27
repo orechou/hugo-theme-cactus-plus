@@ -18,9 +18,14 @@
   </div>
 
   {{ partial "music-player.html" . }}
+  {{ partial "search.html" . }}
 
   <script src={{ "js/spa-router.js" | relURL }} defer></script>
   <script src={{ "js/code-copy.js" | relURL }} defer></script>
   <script src={{ "js/main.js" | relURL }} defer></script>
+  {{ if and (isset .Site.Params "search") .Site.Params.search.enabled }}
+  <script src={{ "lib/fuse/fuse.basic.min.js" | relURL }} defer></script>
+  <script src={{ "js/search.js" | relURL }} defer></script>
+  {{ end }}
 </body>
 </html>
