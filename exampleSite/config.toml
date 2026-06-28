@@ -117,15 +117,15 @@ weight = 7
   [params.search]
     enabled = true
 
-  # IndieWeb / Webmentions (optional).
-  # 1. Sign up at https://webmention.io and set webmentionEndpoint below to
-  #    https://webmention.io/<your-username>/webmention
-  # 2. Set enabled = true to display incoming mentions under each post.
+  # IndieWeb / Webmentions.
   # Microformats2 (h-card on the header, h-entry on posts, rel=me on social
-  # links) are always emitted; this block only gates the endpoint + display.
+  # links) are always emitted. This block gates the receiving endpoint + the
+  # incoming-mentions display. Replace your-username with your webmention.io
+  # username (https://webmention.io) for a real setup; on localhost the display
+  # simply shows the empty state.
   [params.indieweb]
-    enabled = false
-    # webmentionEndpoint = "https://webmention.io/your-username/webmention"
+    enabled = true
+    webmentionEndpoint = "https://webmention.io/your-username/webmention"
     # pingbackEndpoint = "https://webmention.io/webmention?xmlschema=true"
 
   # NeoDB configuration
