@@ -23,16 +23,16 @@
   {{ partial "music-player.html" . }}
   {{ partial "search.html" . }}
 
-  <script src={{ "js/spa-router.js" | relURL }} defer></script>
-  <script src={{ "js/code-copy.js" | relURL }} defer></script>
-  <script src={{ "js/main.js" | relURL }} defer></script>
-  <script src={{ "js/reading-progress.js" | relURL }} defer></script>
+  {{ partial "js.html" "js/spa-router.js" }}
+  {{ partial "js.html" "js/code-copy.js" }}
+  {{ partial "js.html" "js/main.js" }}
+  {{ partial "js.html" "js/reading-progress.js" }}
   {{ if and (isset .Site.Params "search") .Site.Params.search.enabled }}
   <script src={{ "lib/fuse/fuse.basic.min.js" | relURL }} defer></script>
-  <script src={{ "js/search.js" | relURL }} defer></script>
+  {{ partial "js.html" "js/search.js" }}
   {{ end }}
   {{ if and (isset .Site.Params "indieweb") .Site.Params.indieweb.enabled }}
-  <script src={{ "js/webmentions.js" | relURL }} defer></script>
+  {{ partial "js.html" "js/webmentions.js" }}
   {{ end }}
 </body>
 </html>

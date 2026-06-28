@@ -3,6 +3,6 @@
 {{ if $music }}
 <script>window.musicData = {{ jsonify $music | safeJS }};</script>
 <audio id="music-player-audio" style="display:none"></audio>
-<script src={{ "js/music-player.js" | relURL }} defer></script>
+{{ partial "js.html" "js/music-player.js" }}
 {{ end }}
 {{ end }}

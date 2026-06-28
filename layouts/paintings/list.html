@@ -57,7 +57,7 @@ if (typeof window.initPaintings === 'function') {
   window.initPaintings();
 } else {
   var s = document.createElement('script');
-  s.src = {{ "js/paintings.js" | relURL }};
+  s.src = {{ (resources.Get "js/paintings.js" | fingerprint "sha512").RelPermalink }};
   s.onload = function() { window.initPaintings(); };
   document.body.appendChild(s);
 }

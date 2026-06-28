@@ -63,7 +63,7 @@ if (typeof window.initTimeline === 'function') {
   window.initTimeline();
 } else {
   var s = document.createElement('script');
-  s.src = {{ "js/timeline.js" | relURL }};
+  s.src = {{ (resources.Get "js/timeline.js" | fingerprint "sha512").RelPermalink }};
   s.onload = function() { window.initTimeline(); };
   document.body.appendChild(s);
 }

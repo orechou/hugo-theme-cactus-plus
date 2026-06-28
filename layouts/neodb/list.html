@@ -24,7 +24,7 @@ if (typeof window.initNeoDB === 'function') {
   window.initNeoDB();
 } else {
   var s = document.createElement('script');
-  s.src = {{ "js/neodb.js" | relURL }};
+  s.src = {{ (resources.Get "js/neodb.js" | fingerprint "sha512").RelPermalink }};
   s.onload = function() { window.initNeoDB(); };
   document.body.appendChild(s);
 }

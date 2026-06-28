@@ -1,0 +1,12 @@
+{{/*
+  Emit a fingerprinted, cache-busting <script> for an assets/ JS file.
+  The fingerprint hash changes whenever the file content changes, so the
+  browser never serves stale JS — fixing the unfingerprinted-JS cache pit.
+  Usage: {{ partial "js.html" "js/main.js" }}
+*/}}
+{{- $asset := resources.Get . -}}
+{{- if not $asset -}}
+  {{- errorf "js partial: asset not found at %s" . -}}
+{{- end -}}
+{{- $asset = $asset | fingerprint "sha512" -}}
+<script src="{{ $asset.RelPermalink }}" integrity="{{ $asset.Data.Integrity }}" crossorigin="anonymous" defer></script>
