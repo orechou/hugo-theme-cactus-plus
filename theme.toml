@@ -4,8 +4,8 @@ licenselink = "https://github.com/OreChou/hugo-theme-cactus-plus/blob/main/LICEN
 description = "A modern, clean Hugo theme for personal blogs with dark/light mode support"
 homepage = "https://github.com/OreChou/hugo-theme-cactus-plus"
 demosite = ""
-tags = ["blog", "responsive", "clean", "dark-mode", "books"]
-features = ["dark-light-mode", "books", "toc", "syntax-highlighting", "comments", "search"]
+tags = ["blog", "responsive", "clean", "dark-mode"]
+features = ["dark-light-mode", "toc", "syntax-highlighting", "comments", "search"]
 min_version = "0.100.0"
 
 [author]

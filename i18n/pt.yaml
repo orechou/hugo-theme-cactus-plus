@@ -40,24 +40,6 @@
 - id: nav.top
   translation: "Topo"
 
-- id: book.author
-  translation: "Autor："
-
-- id: book.dateFinished
-  translation: "Concluído："
-
-- id: book.readingTime
-  translation: "Tempo de leitura："
-
-- id: book.doubanLink
-  translation: "Douban"
-
-- id: book.neodbLink
-  translation: "NeoDB"
-
-- id: book.review
-  translation: "Resenha"
-
 - id: code.copy
   translation: "Copiar"
 

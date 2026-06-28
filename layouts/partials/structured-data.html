@@ -25,8 +25,4 @@
 <script type="application/ld+json">
 {{ dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" (.Title | plainify) "description" ((.Description | default .Summary) | plainify) "datePublished" (.Date.Format $rfc3339) "dateModified" (.Lastmod.Format $rfc3339) "author" $person "publisher" $publisher "image" (dict "@type" "ImageObject" "url" $image) "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) "url" .Permalink "keywords" (delimit (.Params.tags | default slice) ", ") "wordCount" .WordCount "inLanguage" (.Site.Language.Lang) | jsonify (dict "indent" "  ") | safeJS }}
 </script>
-{{ else if and .IsPage (eq .Section "books") }}
-<script type="application/ld+json">
-{{ dict "@context" "https://schema.org" "@type" "Book" "name" (.Title | plainify) "author" (dict "@type" "Person" "name" (.Params.author | default $author)) "url" .Permalink "image" (.Params.cover | default $logo) "inLanguage" (.Site.Language.Lang) "review" (dict "@type" "Review" "author" $person "datePublished" (.Date.Format $rfc3339) "reviewBody" ((.Description | default .Summary) | plainify) "reviewRating" (dict "@type" "Rating" "ratingValue" (.Params.rating | default 5) "bestRating" 5)) | jsonify (dict "indent" "  ") | safeJS }}
-</script>
 {{ end }}

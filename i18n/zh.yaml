@@ -40,24 +40,6 @@
 - id: nav.top
   translation: "顶部"
 
-- id: book.author
-  translation: "作者："
-
-- id: book.dateFinished
-  translation: "完成时间："
-
-- id: book.readingTime
-  translation: "阅读时长："
-
-- id: book.doubanLink
-  translation: "豆瓣链接"
-
-- id: book.neodbLink
-  translation: "NeoDB 链接"
-
-- id: book.review
-  translation: "书评"
-
 - id: code.copy
   translation: "复制"
 

@@ -8,7 +8,6 @@ A modern, clean, and responsive Hugo theme for personal blogs with dark/light mo
 ## Features
 
 - **Dark/Light Mode** - Toggle between color themes with persistent preference
-- **Book Reviews** - Dedicated section for book reviews with ratings and reading time
 - **Table of Contents** - Auto-generated, multi-level TOC with smooth scrolling
 - **Responsive Design** - Optimized for desktop, tablet, and mobile
 - **Syntax Highlighting** - Code blocks with copy button and line numbers
@@ -86,14 +85,9 @@ url = "/posts"
 weight = 2
 
 [[menu.main]]
-name = "Books"
-url = "/books"
-weight = 3
-
-[[menu.main]]
 name = "About"
 url = "/about"
-weight = 4
+weight = 3
 ```
 
 ### Homepage Settings
@@ -108,15 +102,6 @@ weight = 4
   tagsOverview = true
   showProjectsList = true
   projectsUrl = "https://github.com/yourusername"
-```
-
-### Books Configuration
-
-```toml
-[params.books]
-  booksPerPage = 20  # Books per page (supports 4-column layout on large screens)
-  showRating = true
-  showReadingTime = true
 ```
 
 ### Post Settings
@@ -262,27 +247,6 @@ categories: ["category"]
 ---
 ```
 
-### Books
-
-Create book reviews in `content/books/`:
-
-```yaml
----
-title: "Book Title"
-date: 2026-01-26
-draft: false
-author: "Author Name"
-rating: 5
-dateFinished: 2026-01-20
-readingTime: "5h"
-cover: "/images/book-cover.jpg"
-amazonLink: "https://amazon.com/..."
-goodreadsLink: "https://goodreads.com/..."
----
-
-Your book review content...
-```
-
 ### Projects
 
 Create `data/projects.json`:
@@ -370,15 +334,6 @@ a Cloudflare Worker so your API token never reaches the browser.
 ### Theme Toggle
 
 Users can toggle between dark and light modes. The preference is saved in localStorage and persists across sessions.
-
-### Book Cards
-
-- Responsive grid: 1/2/3/4 columns based on screen size
-- Cover images with placeholder fallback
-- Star ratings (1-5)
-- Reading time display
-- Centered title and author
-- Hover effects with gradient borders
 
 ### Table of Contents
 

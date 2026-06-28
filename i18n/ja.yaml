@@ -40,24 +40,6 @@
 - id: nav.top
   translation: "トップ"
 
-- id: book.author
-  translation: "著者："
-
-- id: book.dateFinished
-  translation: "読了日："
-
-- id: book.readingTime
-  translation: "読書時間："
-
-- id: book.doubanLink
-  translation: "Douban"
-
-- id: book.neodbLink
-  translation: "NeoDB"
-
-- id: book.review
-  translation: "書評"
-
 - id: code.copy
   translation: "コピー"
 
