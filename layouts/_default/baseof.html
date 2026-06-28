@@ -2,6 +2,9 @@
 <html lang="{{ .Site.Language.Lang }}">
 {{ partial "head.html" . }}
 <body class="max-width mx-auto px3 ltr">
+  <!-- Reading progress bar (shown on post pages via reading-progress.js) -->
+  <div id="reading-progress" class="reading-progress" aria-hidden="true" hidden></div>
+
   <!-- Theme switcher (fixed in top-left corner) -->
   <div class="theme-switcher">
     <!-- JavaScript will insert toggle button here -->
@@ -23,6 +26,7 @@
   <script src={{ "js/spa-router.js" | relURL }} defer></script>
   <script src={{ "js/code-copy.js" | relURL }} defer></script>
   <script src={{ "js/main.js" | relURL }} defer></script>
+  <script src={{ "js/reading-progress.js" | relURL }} defer></script>
   {{ if and (isset .Site.Params "search") .Site.Params.search.enabled }}
   <script src={{ "lib/fuse/fuse.basic.min.js" | relURL }} defer></script>
   <script src={{ "js/search.js" | relURL }} defer></script>

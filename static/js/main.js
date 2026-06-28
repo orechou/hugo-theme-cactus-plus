@@ -151,15 +151,30 @@
     }
   }
 
+  // Click-to-zoom for inline content images (those rendered by the
+  // render-image hook as <figure class="content-figure">). Reuses openLightbox.
+  function initContentImages() {
+    document.querySelectorAll('.content-figure img').forEach(function(img) {
+      if (img.dataset.lightboxBound) return;
+      img.dataset.lightboxBound = '1';
+      img.addEventListener('click', function(e) {
+        e.preventDefault();
+        openLightbox(img.currentSrc || img.src, img.alt);
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     initThemeSwitcher();
     initGallery();
     initMobileNav();
+    initContentImages();
   });
 
-  // Reinitialize gallery after SPA navigation
+  // Reinitialize gallery + content images after SPA navigation
   window.addEventListener('spa-content-loaded', function() {
     initGallery();
+    initContentImages();
   });
 
 })();

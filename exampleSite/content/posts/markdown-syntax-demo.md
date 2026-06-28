@@ -76,7 +76,7 @@ print(greet("World"))
 
 ## Images
 
-![Image description](/images/logo.png)
+![Image description](/images/logo.png "The bundled theme logo — click any inline image to zoom.")
 
 ## Task List
 

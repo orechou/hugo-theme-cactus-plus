@@ -375,3 +375,25 @@ article {
     }
   }
 }
+
+// Inline content images — emitted by the render-image hook
+// (layouts/_default/_markup/render-image.html). Click opens the lightbox.
+.content-figure {
+  margin: 1.6em auto;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 2px;
+    cursor: zoom-in;
+  }
+
+  .content-figure-caption {
+    margin-top: 0.4em;
+    font-size: 0.78rem;
+    color: var(--color-meta);
+    font-style: italic;
+    line-height: 1.4;
+  }
+}

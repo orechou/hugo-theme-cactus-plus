@@ -1,0 +1,20 @@
+// Reading progress bar — thin accent bar at the top of the viewport that
+// fills as the reader scrolls through a post (reading-progress.js).
+
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: var(--color-accent-1);
+  z-index: 1001;
+  transition: width 0.08s linear;
+}
+
+// Respect users who prefer reduced motion.
+@media (prefers-reduced-motion: reduce) {
+  .reading-progress {
+    transition: none;
+  }
+}

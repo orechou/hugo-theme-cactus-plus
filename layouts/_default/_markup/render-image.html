@@ -1,0 +1,15 @@
+{{/*
+  Markdown image render hook — applies to every ![alt](src "title") in post
+  bodies. Wraps the image in a <figure>, promotes the optional title to a
+  <figcaption>, and lazy-loads. main.js wires clicks on .content-figure img
+  to the existing lightbox so inline images open full-size on click.
+*/}}
+{{- $src := .Destination -}}
+{{- $alt := .Text -}}
+{{- $caption := .Title -}}
+<figure class="content-figure">
+  <img src="{{ $src | safeURL }}" alt="{{ $alt }}" loading="lazy" decoding="async" />
+  {{- with $caption -}}
+  <figcaption class="content-figure-caption">{{ . }}</figcaption>
+  {{- end -}}
+</figure>
