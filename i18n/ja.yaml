@@ -144,3 +144,15 @@
 
 - id: search.error
   translation: "検索インデックスの読み込みに失敗しました。"
+
+- id: related.title
+  translation: "関連記事"
+
+- id: webmentions.title
+  translation: "メンション"
+
+- id: webmentions.empty
+  translation: "メンションはまだありません"
+
+- id: webmentions.anon
+  translation: "メンション"

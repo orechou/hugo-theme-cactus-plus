@@ -78,6 +78,9 @@ weight = 7
   rss = true
   mainSection = "posts"
 
+  # Default social share image (og:image fallback). 1200x630 recommended.
+  defaultOgImage = "images/og-default.png"
+
   # Homepage settings
   description = "A demo site for the Cactus Plus Hugo theme, showcasing its features."
   postsOnHomePage = 5
@@ -113,6 +116,17 @@ weight = 7
   # output format declared above to generate /searchindex.json.
   [params.search]
     enabled = true
+
+  # IndieWeb / Webmentions (optional).
+  # 1. Sign up at https://webmention.io and set webmentionEndpoint below to
+  #    https://webmention.io/<your-username>/webmention
+  # 2. Set enabled = true to display incoming mentions under each post.
+  # Microformats2 (h-card on the header, h-entry on posts, rel=me on social
+  # links) are always emitted; this block only gates the endpoint + display.
+  [params.indieweb]
+    enabled = false
+    # webmentionEndpoint = "https://webmention.io/your-username/webmention"
+    # pingbackEndpoint = "https://webmention.io/webmention?xmlschema=true"
 
   # NeoDB configuration
   # 1. Deploy the Cloudflare Worker from neodb-worker.js

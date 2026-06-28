@@ -144,3 +144,15 @@
 
 - id: search.error
   translation: "Échec du chargement de l'index de recherche."
+
+- id: related.title
+  translation: "Articles liés"
+
+- id: webmentions.title
+  translation: "Mentions"
+
+- id: webmentions.empty
+  translation: "Aucune mention pour le moment"
+
+- id: webmentions.anon
+  translation: "Mention"

@@ -144,3 +144,15 @@
 
 - id: search.error
   translation: "Не удалось загрузить индекс поиска."
+
+- id: related.title
+  translation: "Похожие записи"
+
+- id: webmentions.title
+  translation: "Упоминания"
+
+- id: webmentions.empty
+  translation: "Упоминаний пока нет"
+
+- id: webmentions.anon
+  translation: "Упоминание"

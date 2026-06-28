@@ -1,0 +1,59 @@
+// Related posts list — shown at the bottom of single posts. Terminal-native
+// styling to match the rest of the theme (dotted separators, monospace date).
+
+.related-posts {
+  margin-top: 3rem;
+  padding-top: 1.4rem;
+  border-top: 1px dotted var(--color-border);
+
+  .related-heading {
+    margin: 0 0 0.8rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-accent-1);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .related-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .related-item {
+    border-bottom: 1px dotted var(--color-border);
+
+    &:last-child { border-bottom: 0; }
+  }
+
+  .related-link {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.55rem 0;
+    text-decoration: none;
+    background-image: none;
+    color: var(--color-text);
+
+    &:hover {
+      background-image: none;
+
+      .related-title { color: var(--color-link); }
+    }
+  }
+
+  .related-title {
+    flex: 1 1 auto;
+    font-size: 0.9rem;
+    line-height: 1.3;
+  }
+
+  .related-date {
+    flex-shrink: 0;
+    font-family: var(--font-family-mono);
+    font-size: 0.72rem;
+    color: var(--color-meta);
+  }
+}

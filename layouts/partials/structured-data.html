@@ -1,0 +1,32 @@
+{{/*
+  JSON-LD structured data (schema.org), emitted into <head>. Adds the ld+json
+  form alongside the existing microdata so search engines can build rich
+  results. Gates on page kind so list pages don't emit Article schema.
+
+  Note: pipe jsonify through safeJS. Go's html/template otherwise re-encodes
+  values placed inside a <script> block — and when the dict contains typed
+  values like .Permalink (template.HTML), the whole object is emitted as a
+  double-escaped JSON string. safeJS is output verbatim in script context.
+*/}}
+{{- $author := .Site.Params.author | default .Site.Title -}}
+{{- $logo := "" -}}
+{{- with .Site.Params.logo }}{{ $logo = . | absURL }}{{ else }}{{ $logo = "images/logo.png" | absURL }}{{ end -}}
+{{- $publisher := dict "@type" "Organization" "name" .Site.Title "logo" (dict "@type" "ImageObject" "url" $logo) -}}
+{{- $person := dict "@type" "Person" "name" $author "url" .Site.BaseURL -}}
+{{- $rfc3339 := "2006-01-02T15:04:05Z07:00" -}}
+
+{{ if .IsHome }}
+<script type="application/ld+json">
+{{ dict "@context" "https://schema.org" "@type" "WebSite" "name" .Site.Title "url" .Site.BaseURL "description" (.Site.Params.description | plainify) "inLanguage" (.Site.Language.Lang) "publisher" $publisher | jsonify (dict "indent" "  ") | safeJS }}
+</script>
+{{ else if and .IsPage (eq .Section "posts") }}
+{{- $image := $logo -}}
+{{- with .Params.images }}{{ with index . 0 }}{{ $image = . | absURL }}{{ end }}{{ else }}{{ with .Params.cover }}{{ $image = . | absURL }}{{ end }}{{ end -}}
+<script type="application/ld+json">
+{{ dict "@context" "https://schema.org" "@type" "BlogPosting" "headline" (.Title | plainify) "description" ((.Description | default .Summary) | plainify) "datePublished" (.Date.Format $rfc3339) "dateModified" (.Lastmod.Format $rfc3339) "author" $person "publisher" $publisher "image" (dict "@type" "ImageObject" "url" $image) "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) "url" .Permalink "keywords" (delimit (.Params.tags | default slice) ", ") "wordCount" .WordCount "inLanguage" (.Site.Language.Lang) | jsonify (dict "indent" "  ") | safeJS }}
+</script>
+{{ else if and .IsPage (eq .Section "books") }}
+<script type="application/ld+json">
+{{ dict "@context" "https://schema.org" "@type" "Book" "name" (.Title | plainify) "author" (dict "@type" "Person" "name" (.Params.author | default $author)) "url" .Permalink "image" (.Params.cover | default $logo) "inLanguage" (.Site.Language.Lang) "review" (dict "@type" "Review" "author" $person "datePublished" (.Date.Format $rfc3339) "reviewBody" ((.Description | default .Summary) | plainify) "reviewRating" (dict "@type" "Rating" "ratingValue" (.Params.rating | default 5) "bestRating" 5)) | jsonify (dict "indent" "  ") | safeJS }}
+</script>
+{{ end }}

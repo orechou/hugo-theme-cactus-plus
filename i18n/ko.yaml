@@ -144,3 +144,15 @@
 
 - id: search.error
   translation: "검색 인덱스를 불러오지 못했습니다."
+
+- id: related.title
+  translation: "관련 글"
+
+- id: webmentions.title
+  translation: "멘션"
+
+- id: webmentions.empty
+  translation: "아직 멘션이 없습니다"
+
+- id: webmentions.anon
+  translation: "멘션"

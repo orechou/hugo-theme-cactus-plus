@@ -199,3 +199,15 @@
 
 - id: search.error
   translation: "Search index failed to load."
+
+- id: related.title
+  translation: "Related"
+
+- id: webmentions.title
+  translation: "Mentions"
+
+- id: webmentions.empty
+  translation: "No mentions yet"
+
+- id: webmentions.anon
+  translation: "Mention"

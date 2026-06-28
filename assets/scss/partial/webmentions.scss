@@ -1,0 +1,59 @@
+// Incoming webmentions — author chips fetched from webmention.io.
+// Terminal-native styling to match the rest of the theme.
+
+.webmentions {
+  margin-top: 3rem;
+  padding-top: 1.4rem;
+  border-top: 1px dotted var(--color-border);
+
+  .webmentions-heading {
+    margin: 0 0 0.8rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-accent-1);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .webmentions-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .wm-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px dotted var(--color-border);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--color-text);
+    background-image: none;
+    font-size: 0.78rem;
+
+    &:hover {
+      background-image: none;
+      color: var(--color-link);
+    }
+  }
+
+  .wm-avatar {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+  }
+
+  .wm-date {
+    color: var(--color-meta);
+    font-family: var(--font-family-mono);
+    font-size: 0.66rem;
+  }
+
+  .webmentions-empty {
+    margin: 0;
+    color: var(--color-meta);
+    font-size: 0.8rem;
+  }
+}

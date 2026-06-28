@@ -144,3 +144,15 @@
 
 - id: search.error
   translation: "Suchindex konnte nicht geladen werden."
+
+- id: related.title
+  translation: "Verwandte Beiträge"
+
+- id: webmentions.title
+  translation: "Erwähnungen"
+
+- id: webmentions.empty
+  translation: "Noch keine Erwähnungen"
+
+- id: webmentions.anon
+  translation: "Erwähnung"

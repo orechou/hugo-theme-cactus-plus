@@ -199,3 +199,15 @@
 
 - id: search.error
   translation: "搜索索引加载失败。"
+
+- id: related.title
+  translation: "相关文章"
+
+- id: webmentions.title
+  translation: "提及"
+
+- id: webmentions.empty
+  translation: "暂无提及"
+
+- id: webmentions.anon
+  translation: "提及"

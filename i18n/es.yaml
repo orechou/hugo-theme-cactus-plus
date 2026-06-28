@@ -144,3 +144,15 @@
 
 - id: search.error
   translation: "Error al cargar el índice de búsqueda."
+
+- id: related.title
+  translation: "Relacionados"
+
+- id: webmentions.title
+  translation: "Menciones"
+
+- id: webmentions.empty
+  translation: "Aún no hay menciones"
+
+- id: webmentions.anon
+  translation: "Mención"

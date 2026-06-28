@@ -24,8 +24,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
-  {{ template "_internal/opengraph.html" . }}
+  {{ partial "opengraph.html" . }}
   {{ template "_internal/twitter_cards.html" . }}
+  {{ partial "structured-data.html" . }}
+
+  {{/* IndieWeb: webmention receiving endpoint (configurable). */}}
+  {{ with .Site.Params.indieweb }}
+    {{ with .webmentionEndpoint }}<link rel="webmention" href="{{ . }}">{{ end }}
+    {{ with .pingbackEndpoint }}<link rel="pingback" href="{{ . }}">{{ end }}
+  {{ end }}
   {{ .Scratch.Set "colortheme" "white"}}
   {{ if .Site.Params.colortheme }}
     {{ .Scratch.Set "colortheme" .Site.Params.colortheme }}
@@ -84,5 +91,7 @@
     document.documentElement.dataset.searchLoading = {{ i18n "search.loading" | default "Loading…" }};
     document.documentElement.dataset.searchNoResults = {{ i18n "search.noResults" | default "No results found" }};
     document.documentElement.dataset.searchError = {{ i18n "search.error" | default "Search index failed to load." }};
+    document.documentElement.dataset.webmentionsEmpty = {{ i18n "webmentions.empty" | default "No mentions yet" }};
+    document.documentElement.dataset.webmentionsAnon = {{ i18n "webmentions.anon" | default "Mention" }};
   </script>
 </head>

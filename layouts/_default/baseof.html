@@ -27,5 +27,8 @@
   <script src={{ "lib/fuse/fuse.basic.min.js" | relURL }} defer></script>
   <script src={{ "js/search.js" | relURL }} defer></script>
   {{ end }}
+  {{ if and (isset .Site.Params "indieweb") .Site.Params.indieweb.enabled }}
+  <script src={{ "js/webmentions.js" | relURL }} defer></script>
+  {{ end }}
 </body>
 </html>

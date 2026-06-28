@@ -1,0 +1,11 @@
+{{/*
+  Incoming webmentions. Renders a container populated client-side by
+  webmentions.js (fetches webmention.io). Gated by [params.indieweb] enabled.
+  The sending endpoint is declared separately in head.html.
+*/}}
+{{ if and (isset .Site.Params "indieweb") .Site.Params.indieweb.enabled }}
+<section id="webmentions" class="webmentions" data-target="{{ .Permalink }}" aria-live="polite">
+  <h2 class="webmentions-heading">{{ i18n "webmentions.title" | default "Mentions" }}</h2>
+  <div class="webmentions-list"></div>
+</section>
+{{ end }}

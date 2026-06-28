@@ -1,0 +1,37 @@
+{{/*
+  Related posts — pages in the same section that share at least one tag with
+  the current page. Pure Hugo (no config required); renders nothing when there
+  are no related pages. Count is tunable via [params] relatedCount (default 3).
+*/}}
+{{- $related := slice -}}
+{{- $tags := slice -}}
+{{- with .Params.tags -}}
+  {{- if reflect.IsSlice . }}{{ $tags = . }}{{ else }}{{ $tags = slice . }}{{ end -}}
+{{- end -}}
+{{- range $tags -}}
+  {{- with site.GetPage (printf "/tags/%s" (urlize .)) -}}
+    {{- $related = $related | union .Pages -}}
+  {{- end -}}
+{{- end -}}
+{{- /* Same section, exclude self, newest first */ -}}
+{{- $related = where $related "Section" "==" $.Section -}}
+{{- $related = where $related "Permalink" "!=" $.Permalink -}}
+{{- $related = sort $related "Date" "desc" -}}
+{{- $count := .Site.Params.relatedCount | default 3 -}}
+{{- $related = first $count $related -}}
+{{- if gt (len $related) 0 -}}
+<section class="related-posts">
+  <h2 class="related-heading">{{ i18n "related.title" | default "Related" }}</h2>
+  <ul class="related-list">
+    {{- range $related -}}
+    {{- $dataFormat := $.Site.Params.dateFormat | default "2006-01-02" -}}
+    <li class="related-item">
+      <a href="{{ .Permalink }}" class="related-link">
+        <span class="related-title">{{ if .Title }}{{- .Title -}}{{ else }}{{- i18n "timeline.untitled" | default "Untitled" -}}{{ end }}</span>
+        <span class="related-date"><time datetime="{{ time .Date }}">{{ .Date.Format $dataFormat }}</time></span>
+      </a>
+    </li>
+    {{- end -}}
+  </ul>
+</section>
+{{- end -}}
