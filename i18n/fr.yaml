@@ -138,3 +138,14 @@
 
 - id: webmentions.anon
   translation: "Mention"
+
+- id: home.recentDiary
+  translation: "Notes récentes"
+
+- id: home.recentActivity
+  translation: "Activité récente"
+
+- id: home.activityUnit
+  translation:
+    one: "publication"
+    other: "publications"

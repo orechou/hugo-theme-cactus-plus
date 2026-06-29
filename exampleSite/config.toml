@@ -80,6 +80,12 @@ weight = 6
   description = "A demo site for the Cactus Plus Hugo theme, showcasing its features."
   postsOnHomePage = 5
 
+  # Homepage multi-section layout (all optional, sensible defaults if omitted).
+  showRecentDiary = true       # Recent diary / notes section
+  recentDiaryCount = 5
+  showRecentActivity = true    # Monthly activity band (posts + diary by month)
+  recentActivityMonths = 12
+
   # Post settings
   showReadTime = true
   dateFormat = "2006-01-02"

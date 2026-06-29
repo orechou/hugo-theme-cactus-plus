@@ -193,3 +193,13 @@
 
 - id: webmentions.anon
   translation: "提及"
+
+- id: home.recentDiary
+  translation: "最近手记"
+
+- id: home.recentActivity
+  translation: "最近动态"
+
+- id: home.activityUnit
+  translation:
+    other: "篇"

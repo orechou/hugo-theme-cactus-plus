@@ -138,3 +138,16 @@
 
 - id: webmentions.anon
   translation: "Упоминание"
+
+- id: home.recentDiary
+  translation: "Недавние заметки"
+
+- id: home.recentActivity
+  translation: "Недавняя активность"
+
+- id: home.activityUnit
+  translation:
+    one: "запись"
+    few: "записи"
+    many: "записей"
+    other: "записей"

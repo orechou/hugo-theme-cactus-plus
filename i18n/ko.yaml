@@ -138,3 +138,13 @@
 
 - id: webmentions.anon
   translation: "멘션"
+
+- id: home.recentDiary
+  translation: "최근 메모"
+
+- id: home.recentActivity
+  translation: "최근 활동"
+
+- id: home.activityUnit
+  translation:
+    other: "개"

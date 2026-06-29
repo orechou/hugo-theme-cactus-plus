@@ -193,3 +193,14 @@
 
 - id: webmentions.anon
   translation: "Mention"
+
+- id: home.recentDiary
+  translation: "Recent Notes"
+
+- id: home.recentActivity
+  translation: "Recent Activity"
+
+- id: home.activityUnit
+  translation:
+    one: "post"
+    other: "posts"

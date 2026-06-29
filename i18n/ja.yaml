@@ -138,3 +138,13 @@
 
 - id: webmentions.anon
   translation: "メンション"
+
+- id: home.recentDiary
+  translation: "最近の手記"
+
+- id: home.recentActivity
+  translation: "最近の動静"
+
+- id: home.activityUnit
+  translation:
+    other: "件"
