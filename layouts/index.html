@@ -113,8 +113,6 @@
   {{/* Recent activity — monthly band (posts + diary by publish month) */}}
   {{ if and (.Site.Params.showRecentActivity | default true) (gt (len $activityPages) 0) }}
   <section id="recent-activity">
-    <span class="h1">{{ i18n "home.recentActivity" }}</span>
-
     {{/* Count items per YYYY-MM */}}
     {{ $.Scratch.Set "monthCounts" dict }}
     {{ range $activityPages }}
@@ -132,28 +130,46 @@
     {{ $end := time (printf "%s-01" ((index $activityPages 0).Date.Format "2006-01")) }}
     {{ $.Scratch.Set "months" slice }}
     {{ $.Scratch.Set "maxCount" 1 }}
+    {{ $.Scratch.Set "windowTotal" 0 }}
     {{ range $i := seq $monthSpan }}
       {{ $m := $end.AddDate 0 (sub $i $monthSpan) 0 }}
       {{ $.Scratch.Set "months" ( ($.Scratch.Get "months") | append $m ) }}
       {{ $c := 0 }}
       {{ with index $monthCounts ($m.Format "2006-01") }}{{ $c = . }}{{ end }}
       {{ if gt $c ($.Scratch.Get "maxCount") }}{{ $.Scratch.Set "maxCount" $c }}{{ end }}
+      {{ $.Scratch.Set "windowTotal" (add ($.Scratch.Get "windowTotal") $c) }}
     {{ end }}
     {{ $maxCount := $.Scratch.Get "maxCount" }}
+    {{ $windowTotal := $.Scratch.Get "windowTotal" }}
+    {{ $months := $.Scratch.Get "months" }}
+    {{ $oldest := index $months 0 }}
 
-    <div class="activity-band">
-      {{ range $m := $.Scratch.Get "months" }}
-        {{ $k := $m.Format "2006-01" }}
-        {{ $c := 0 }}
-        {{ with index $monthCounts $k }}{{ $c = . }}{{ end }}
-        {{ $pct := mul (div (float $c) (float $maxCount)) 100.0 }}
-        <div class="activity-month{{ if eq $c 0 }} is-empty{{ end }}" title="{{ $k }} · {{ $c }} {{ i18n "home.activityUnit" $c }}">
-          <div class="activity-bar-track">
-            <div class="activity-bar-fill" style="height: {{ printf "%.0f" $pct }}%"></div>
+    <div class="activity-head">
+      <span class="h1">{{ i18n "home.recentActivity" }}</span>
+      <span class="activity-summary">{{ $windowTotal }} {{ i18n "home.activityUnit" $windowTotal }}</span>
+    </div>
+
+    <div class="activity-chart">
+      <div class="activity-band">
+        {{ range $m := $months }}
+          {{ $k := $m.Format "2006-01" }}
+          {{ $c := 0 }}
+          {{ with index $monthCounts $k }}{{ $c = . }}{{ end }}
+          {{ $pct := mul (div (float $c) (float $maxCount)) 100.0 }}
+          <div class="activity-bar{{ if eq $c 0 }} is-empty{{ end }}" title="{{ $k }} · {{ $c }} {{ i18n "home.activityUnit" $c }}">
+            <span class="activity-bar-fill" style="height: {{ printf "%.0f" $pct }}%"></span>
           </div>
+        {{ end }}
+      </div>
+      <div class="activity-labels">
+        {{ range $m := $months }}
           <span class="activity-label">{{ $m.Format "1" }}</span>
-        </div>
-      {{ end }}
+        {{ end }}
+      </div>
+      <div class="activity-years">
+        <span>{{ $oldest.Format "2006" }}</span>
+        <span>{{ $end.Format "2006" }}</span>
+      </div>
     </div>
   </section>
   {{ end }}

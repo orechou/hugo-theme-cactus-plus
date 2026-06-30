@@ -53,18 +53,24 @@
 
   .project-item {
     padding: 1.5rem;
-    border: 2px solid transparent;
-    background: linear-gradient(var(--color-background), var(--color-background)) padding-box,
-                linear-gradient(135deg, rgba(212, 128, 170, 0.3), rgba(43, 188, 138, 0.2)) border-box;
     border-radius: 12px;
+    // Same floating-card recipe as the activity chart: soft accent tint,
+    // faint border, soft elevation shadow — theme-aware via color-mix.
+    background-color: var(--color-background-code);
+    background: color-mix(in srgb, var(--color-accent-1) 5%, var(--color-background));
+    border: 1px solid color-mix(in srgb, var(--color-accent-1) 14%, transparent);
+    box-shadow:
+      0 6px 22px -8px color-mix(in srgb, var(--color-accent-1) 45%, transparent),
+      0 1px 3px rgba(0, 0, 0, 0.05);
     text-align: center;
-    transition: all 0.3s ease;
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
 
     &:hover {
       transform: translateY(-4px);
-      background: linear-gradient(var(--color-background), var(--color-background)) padding-box,
-                  linear-gradient(135deg, rgba(212, 128, 170, 0.6), rgba(43, 188, 138, 0.5)) border-box;
-      box-shadow: 0 8px 24px rgba(212, 128, 170, 0.15);
+      border-color: color-mix(in srgb, var(--color-accent-1) 30%, transparent);
+      box-shadow:
+        0 14px 32px -10px color-mix(in srgb, var(--color-accent-1) 55%, transparent),
+        0 2px 6px rgba(0, 0, 0, 0.06);
     }
   }
 
@@ -138,67 +144,110 @@
 
 // Monthly activity band.
 #recent-activity {
+  .activity-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+
+  .activity-summary {
+    font-family: $font-family-mono;
+    font-size: 0.8rem;
+    color: var(--color-accent-3);
+  }
+
+  // Floating, softly-elevated card — no harsh border line.
+  .activity-chart {
+    padding: 1rem 1.1rem 0.85rem;
+    border-radius: 12px;
+    // color-mix fallback for older browsers (plain tinted surface).
+    background-color: var(--color-background-code);
+    background: color-mix(in srgb, var(--color-accent-1) 5%, var(--color-background));
+    border: 1px solid color-mix(in srgb, var(--color-accent-1) 14%, transparent);
+    box-shadow:
+      0 6px 22px -8px color-mix(in srgb, var(--color-accent-1) 45%, transparent),
+      0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .activity-chart:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 12px 30px -10px color-mix(in srgb, var(--color-accent-1) 50%, transparent),
+      0 2px 6px rgba(0, 0, 0, 0.06);
+  }
+
   .activity-band {
     display: flex;
     align-items: flex-end;
-    gap: 4px;
-    height: 90px;
-    margin-top: 1.5rem;
-    overflow-x: auto;
-    padding-bottom: 0.25rem;
+    gap: 6px;
+    height: 100px;
+    // Soft baseline rule the bars sit on (faint, not a hard line).
+    border-bottom: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
   }
 
-  .activity-month {
+  .activity-bar {
     flex: 1 0 0;
     min-width: 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
     height: 100%;
+    display: flex;
+    align-items: flex-end;
     cursor: default;
-
-    .activity-bar-track {
-      width: 100%;
-      flex: 1 1 auto;
-      display: flex;
-      align-items: flex-end;
-    }
 
     .activity-bar-fill {
       width: 100%;
-      min-height: 3px;
+      min-height: 4px;
       background-color: var(--color-accent-1);
-      border-radius: 2px 2px 0 0;
-      opacity: 0.4;
-      transition: opacity 0.2s ease, height 0.3s ease;
+      border-radius: 5px 5px 0 0;
+      transition: filter 0.2s ease, opacity 0.2s ease;
     }
 
     &:hover .activity-bar-fill {
-      opacity: 1;
+      filter: brightness(1.25);
     }
 
+    // Empty month: a short, clearly-visible tick resting on the baseline
+    // (not an invisible gap that makes the chart look broken).
     &.is-empty .activity-bar-fill {
-      min-height: 2px;
-      opacity: 0.12;
+      min-height: 4px;
+      opacity: 0.16;
     }
+  }
 
-    .activity-label {
-      margin-top: 0.35rem;
-      font-size: 0.65rem;
-      color: var(--color-accent-3);
-      font-family: $font-family-mono;
-    }
+  .activity-labels {
+    display: flex;
+    gap: 6px;
+    margin-top: 0.45rem;
+  }
+
+  .activity-label {
+    flex: 1 0 0;
+    min-width: 14px;
+    text-align: center;
+    font-family: $font-family-mono;
+    font-size: 0.7rem;
+    color: var(--color-accent-3);
+  }
+
+  .activity-years {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.35rem;
+    font-family: $font-family-mono;
+    font-size: 0.68rem;
+    color: var(--color-accent-3);
   }
 }
 
 @media (max-width: 480px) {
-  // On narrow screens let the band scroll horizontally instead of squishing.
-  #recent-activity .activity-band {
-    justify-content: flex-start;
+  // Narrow screens: let the chart scroll horizontally instead of squishing.
+  #recent-activity .activity-chart {
+    overflow-x: auto;
 
-    .activity-month {
-      min-width: 20px;
+    .activity-bar,
+    .activity-label {
+      min-width: 22px;
     }
   }
 }
