@@ -198,9 +198,34 @@
   translation: "Recent Notes"
 
 - id: home.recentActivity
-  translation: "Recent Activity"
+  translation: "Post Statistics"
 
 - id: home.activityUnit
   translation:
     one: "post"
     other: "posts"
+
+- id: heatmap.days
+  translation: "Sun Mon Tue Wed Thu Fri Sat"
+
+- id: heatmap.postsCount
+  translation: "Posts: {{ .Count }}"
+
+- id: heatmap.wordCount
+  translation: "Words: {{ .Words }}"
+
+- id: heatmap.howItWorks
+  translation: "How it works"
+
+- id: home.recentWeekly
+  translation: "Recent Weekly"
+
+- id: weekly.title
+  translation: "Weekly"
+
+- id: weekly.untitled
+  translation: "Untitled"
+
+- id: weekly.readMore
+  translation: "Read"
+

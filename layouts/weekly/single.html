@@ -1,0 +1,104 @@
+{{ define "main" }}
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    <h1 class="posttitle p-name" itemprop="name headline">
+      {{ .Title }}
+    </h1>
+    <div class="meta">
+      {{ $siteAuthor := "" }}
+      {{ with .Site.Params.author }}{{ $siteAuthor = . }}{{ end }}
+      {{ if not $siteAuthor }}{{ $siteAuthor = .Site.Title }}{{ end }}
+      {{ if $siteAuthor }}
+      <span class="author p-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">
+          {{ $siteAuthor }}
+        </span>
+      </span>
+      {{ end }}
+      <div class="postdate">
+        {{ $dataFormat := .Site.Params.dateFormat | default "2006-01-02" }}
+        <time class="dt-published" datetime="{{ .Date }}" itemprop="datePublished">{{ .Date.Format $dataFormat }}</time>
+        {{ with .Params.issue }}
+        <span class="weekly-issue-badge">#{{ printf "%03d" . }}</span>
+        {{ end }}
+        {{ if (and .Site.Params.show_updated (ne .Lastmod .Date)) }}
+          (Updated: <time datetime="{{ .Lastmod }}" itemprop="dateModified">{{ .Lastmod.Format $dataFormat }}</time>)
+        {{ end }}
+      </div>
+      {{ $showReadTime := .Site.Params.showReadTime | default false }}
+      {{if $showReadTime}}
+      <div class="article-read-time">
+        <i class="far fa-clock"></i>
+        {{ $readTime := math.Round (div (countwords .Content) 220.0) }}
+        {{ $readTime }} minute read
+      </div>
+      {{ end }}
+      {{ $cats := slice }}
+      {{ if isset .Params "categories" }}
+        {{ if reflect.IsSlice .Params.categories }}{{ $cats = .Params.categories }}{{ else }}{{ $cats = slice .Params.categories }}{{ end }}
+      {{ end }}
+      {{ if gt (len $cats) 0 }}
+      <div class="article-category">
+          <i class="fas fa-archive"></i>
+          {{ range $index, $value := $cats }}
+          {{ if gt $index 0 }} {{ print ", " }} {{ end }}
+          <a class="category-link" href="{{ "/categories/" | relLangURL }}{{ $value | urlize }}">{{ $value }}</a>
+          {{ end }}
+      </div>
+      {{ end }}
+      {{ $tags := slice }}
+      {{ if isset .Params "tags" }}
+        {{ if reflect.IsSlice .Params.tags }}{{ $tags = .Params.tags }}{{ else }}{{ $tags = slice .Params.tags }}{{ end }}
+      {{ end }}
+      {{ if gt (len $tags) 0 }}
+      <div class="article-tag">
+          <i class="fas fa-tag"></i>
+          {{ range $index, $value := $tags }}
+          {{ if gt $index 0 }} {{ print ", " }} {{ end }}
+          <a class="tag-link" href="{{ "/tags/" | relLangURL }}{{ $value | urlize }}" rel="tag">{{ $value }}</a>
+          {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </header>
+
+{{ with .Resources.ByType "image" }}
+  <div class="article-gallery">
+    {{ range $index, $value := . }}
+    <a class="gallery-item" href="{{ .RelPermalink }}" rel="gallery_{{ $index }}">
+        <img src="{{ .RelPermalink }}" itemprop="image" loading="lazy" decoding="async" alt="{{ .Title }}" onerror="this.style.display='none'" />
+    </a>
+    {{ end }}
+  </div>
+{{ end }}
+  {{ if .TableOfContents }}
+  <div id="toc">
+    {{ .TableOfContents }}
+  </div>
+  {{ end }}
+  <div class="content e-content" itemprop="articleBody">
+    {{ .Content}}
+  </div>
+</article>
+
+<nav class="post-nav">
+  {{ with .PrevInSection }}
+  <a class="post-nav-prev" href="{{ .Permalink }}">
+    <i class="fas fa-chevron-left"></i>
+    {{ .Title }}
+  </a>
+  {{ end }}
+  {{ with .NextInSection }}
+  <a class="post-nav-next" href="{{ .Permalink }}">
+    {{ .Title }}
+    <i class="fas fa-chevron-right"></i>
+  </a>
+  {{ end }}
+</nav>
+
+{{ partial "related.html" . }}
+
+{{ partial "webmentions.html" . }}
+
+{{ partial "comments.html" . }}
+{{ end }}

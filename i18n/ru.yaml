@@ -143,7 +143,7 @@
   translation: "Недавние заметки"
 
 - id: home.recentActivity
-  translation: "Недавняя активность"
+  translation: "Статистика"
 
 - id: home.activityUnit
   translation:
@@ -151,3 +151,28 @@
     few: "записи"
     many: "записей"
     other: "записей"
+
+- id: heatmap.days
+  translation: "Вс Пн Вт Ср Чт Пт Сб"
+
+- id: heatmap.postsCount
+  translation: "Записей: {{ .Count }}"
+
+- id: heatmap.wordCount
+  translation: "Слов: {{ .Words }}"
+
+- id: heatmap.howItWorks
+  translation: "Как это работает"
+
+- id: home.recentWeekly
+  translation: "Свежий выпуск"
+
+- id: weekly.title
+  translation: "Еженедельник"
+
+- id: weekly.untitled
+  translation: "Без названия"
+
+- id: weekly.readMore
+  translation: "Читать"
+

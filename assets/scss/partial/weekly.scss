@@ -1,0 +1,25 @@
+// List — issue number in the archive row
+.weekly-issue-no {
+  font-family: var(--font-mono, monospace);
+  font-weight: 600;
+  color: var(--color-accent-1);
+}
+
+// Single — issue badge next to the publish date on each weekly issue
+.weekly-issue-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--color-accent-1);
+  background: color-mix(in srgb, var(--color-accent-1) 12%, transparent);
+  vertical-align: middle;
+}
+
+// Home — section spacing (unify with #recent-diary / #recent-activity group)
+#recent-weekly {
+  margin-top: 3rem;
+}

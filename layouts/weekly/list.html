@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div id="archive">
+  <ul class="post-list">
+    {{ $dataFormat := .Site.Params.dateFormat | default "2006-01-02" }}
+    {{ range (sort .Paginator.Pages "Date" "desc") }}
+      {{ $year := .Date.Format "2006" }}
+      {{ if (ne $year ($.Scratch.Get "year")) }}
+        {{ $.Scratch.Set "year" $year }}
+        <h2>{{ $year }}</h2>
+      {{ end }}
+      <li class="post-item">
+        <div class="meta">
+          <time datetime="{{ time .Date }}">{{ .Date.Format $dataFormat }}</time>
+          {{ with .Params.issue }}<span class="weekly-issue-no">#{{ printf "%03d" . }}</span>{{ end }}
+        </div>
+        <span>
+          <a href="{{ .Permalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ i18n "weekly.untitled" }}{{ end }}</a>
+        </span>
+      </li>
+    {{ end }}
+  </ul>
+  {{ partial "pagination.html" . }}
+</div>
+{{ end }}

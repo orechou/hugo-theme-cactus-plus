@@ -143,8 +143,33 @@
   translation: "最近の手記"
 
 - id: home.recentActivity
-  translation: "最近の動静"
+  translation: "投稿統計"
 
 - id: home.activityUnit
   translation:
     other: "件"
+
+- id: heatmap.days
+  translation: "日 月 火 水 木 金 土"
+
+- id: heatmap.postsCount
+  translation: "投稿数：{{ .Count }} 件"
+
+- id: heatmap.wordCount
+  translation: "累計文字数：{{ .Words }} 万字"
+
+- id: heatmap.howItWorks
+  translation: "使い方"
+
+- id: home.recentWeekly
+  translation: "最近の週刊"
+
+- id: weekly.title
+  translation: "週刊"
+
+- id: weekly.untitled
+  translation: "無題"
+
+- id: weekly.readMore
+  translation: "読む"
+

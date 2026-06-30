@@ -143,9 +143,34 @@
   translation: "Notas recentes"
 
 - id: home.recentActivity
-  translation: "Atividade recente"
+  translation: "Estatísticas"
 
 - id: home.activityUnit
   translation:
     one: "publicação"
     other: "publicações"
+
+- id: heatmap.days
+  translation: "Dom Seg Ter Qua Qui Sex Sáb"
+
+- id: heatmap.postsCount
+  translation: "Publicações: {{ .Count }}"
+
+- id: heatmap.wordCount
+  translation: "Palavras: {{ .Words }}"
+
+- id: heatmap.howItWorks
+  translation: "Como funciona"
+
+- id: home.recentWeekly
+  translation: "Semanal recente"
+
+- id: weekly.title
+  translation: "Semanal"
+
+- id: weekly.untitled
+  translation: "Sem título"
+
+- id: weekly.readMore
+  translation: "Ler"
+

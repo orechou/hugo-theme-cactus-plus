@@ -143,9 +143,34 @@
   translation: "Neueste Notizen"
 
 - id: home.recentActivity
-  translation: "Letzte Aktivität"
+  translation: "Beitragsstatistik"
 
 - id: home.activityUnit
   translation:
     one: "Beitrag"
     other: "Beiträge"
+
+- id: heatmap.days
+  translation: "So Mo Di Mi Do Fr Sa"
+
+- id: heatmap.postsCount
+  translation: "Beiträge: {{ .Count }}"
+
+- id: heatmap.wordCount
+  translation: "Wörter: {{ .Words }}"
+
+- id: heatmap.howItWorks
+  translation: "So funktioniert's"
+
+- id: home.recentWeekly
+  translation: "Aktuelle Ausgabe"
+
+- id: weekly.title
+  translation: "Wöchentlich"
+
+- id: weekly.untitled
+  translation: "Ohne Titel"
+
+- id: weekly.readMore
+  translation: "Lesen"
+

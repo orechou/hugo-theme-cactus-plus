@@ -3,6 +3,7 @@
   {{ $dataFormat := .Site.Params.dateFormat | default "2006-01-02" }}
   {{ $mainPosts := (sort ( where site.RegularPages "Type" "in" site.Params.mainSections ) "Date" "desc") }}
   {{ $diaryPages := (sort ( where site.RegularPages "Type" "eq" "diary" ) "Date" "desc") }}
+  {{ $weeklyPages := (sort ( where site.RegularPages "Type" "eq" "weekly" ) "Date" "desc") }}
   {{ $activityPages := (sort (union $mainPosts $diaryPages) "Date" "desc") }}
 
   <section id="about">
@@ -110,65 +111,137 @@
   </section>
   {{ end }}
 
-  {{/* Recent activity — monthly band (posts + diary by publish month) */}}
+  {{/* Recent weekly issues */}}
+  {{ if and (.Site.Params.showRecentWeekly | default true) (gt (len $weeklyPages) 0) }}
+  <section id="recent-weekly">
+    <span class="h1"><a href="{{ "weekly/" | absURL }}">{{ i18n "home.recentWeekly" }}</a></span>
+    {{ $weeklyCount := .Site.Params.recentWeeklyCount | default 5 }}
+    <ul class="post-list">
+      {{ range (first $weeklyCount $weeklyPages) }}
+      <li class="post-item">
+        <div class="meta"><time datetime="{{ time .Date }}" itemprop="datePublished">{{ .Date.Format $dataFormat }}</time></div>
+        <span class="home-entry">
+          <a href="{{ .Permalink }}">{{ if .Title }} {{- .Title -}} {{ else }} {{- i18n "weekly.untitled" -}}{{ end }}</a>
+          {{ with .Params.issue }}<span class="home-chip weekly">#{{ printf "%03d" . }}</span>{{ end }}
+        </span>
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+
+  {{/* Recent activity — GitHub-style daily heatmap (posts + diary by day) */}}
   {{ if and (.Site.Params.showRecentActivity | default true) (gt (len $activityPages) 0) }}
   <section id="recent-activity">
-    {{/* Count items per YYYY-MM */}}
-    {{ $.Scratch.Set "monthCounts" dict }}
+    {{/* Count items per calendar day (YYYY-MM-DD) */}}
+    {{ $.Scratch.Set "dayCounts" dict }}
+    {{ $.Scratch.Set "maxDay" 1 }}
     {{ range $activityPages }}
-      {{ $k := .Date.Format "2006-01" }}
-      {{ $counts := $.Scratch.Get "monthCounts" }}
+      {{ $k := .Date.Format "2006-01-02" }}
+      {{ $counts := $.Scratch.Get "dayCounts" }}
       {{ $c := 0 }}
       {{ with index $counts $k }}{{ $c = . }}{{ end }}
-      {{ $.Scratch.Set "monthCounts" (merge $counts (dict $k (add $c 1))) }}
+      {{ $c = add $c 1 }}
+      {{ $.Scratch.Set "dayCounts" (merge $counts (dict $k $c)) }}
+      {{ if gt $c ($.Scratch.Get "maxDay") }}{{ $.Scratch.Set "maxDay" $c }}{{ end }}
     {{ end }}
-    {{ $monthCounts := $.Scratch.Get "monthCounts" }}
+    {{ $dayCounts := $.Scratch.Get "dayCounts" }}
+    {{ $maxDay := $.Scratch.Get "maxDay" }}
 
-    {{/* Build the last N months ending at the newest content month (not build time,
-         so stale content doesn't produce a long tail of empty months). */}}
-    {{ $monthSpan := .Site.Params.recentActivityMonths | default 12 }}
-    {{ $end := time (printf "%s-01" ((index $activityPages 0).Date.Format "2006-01")) }}
-    {{ $.Scratch.Set "months" slice }}
-    {{ $.Scratch.Set "maxCount" 1 }}
-    {{ $.Scratch.Set "windowTotal" 0 }}
-    {{ range $i := seq $monthSpan }}
-      {{ $m := $end.AddDate 0 (sub $i $monthSpan) 0 }}
-      {{ $.Scratch.Set "months" ( ($.Scratch.Get "months") | append $m ) }}
-      {{ $c := 0 }}
-      {{ with index $monthCounts ($m.Format "2006-01") }}{{ $c = . }}{{ end }}
-      {{ if gt $c ($.Scratch.Get "maxCount") }}{{ $.Scratch.Set "maxCount" $c }}{{ end }}
-      {{ $.Scratch.Set "windowTotal" (add ($.Scratch.Get "windowTotal") $c) }}
+    {{/* Span: trailing N months ending today, start aligned to a Sunday. */}}
+    {{ $months := .Site.Params.recentActivityMonths | default 12 }}
+    {{ $end := now }}
+    {{ $start := $end.AddDate 0 (mul $months -1) 0 }}
+    {{ $start = $start.AddDate 0 0 (sub 0 (int $start.Weekday)) }}
+
+    {{/* Collect the list of week-start dates (<= end) so the month-label row
+         and the grid stay column-aligned. */}}
+    {{ $nWeeks := add (mul $months 5) 2 }}
+    {{ $.Scratch.Set "weeks" slice }}
+    {{ range $wi := seq $nWeeks }}
+      {{ $ws := $start.AddDate 0 0 (mul 7 (sub $wi 1)) }}
+      {{ if gt $ws.Unix $end.Unix }}{{ break }}{{ end }}
+      {{ $.Scratch.Set "weeks" ( ($.Scratch.Get "weeks") | append $ws ) }}
     {{ end }}
-    {{ $maxCount := $.Scratch.Get "maxCount" }}
-    {{ $windowTotal := $.Scratch.Get "windowTotal" }}
-    {{ $months := $.Scratch.Get "months" }}
-    {{ $oldest := index $months 0 }}
+    {{ $weeks := $.Scratch.Get "weeks" }}
+
+    {{/* CJK languages count characters and report word totals in 万字. */}}
+    {{ $cjk := in (slice "zh" "ja" "ko") .Site.Language.Lang }}
+    {{ $days := split (i18n "heatmap.days") " " }}
+    {{ $wcTotal := 0 }}
+    {{ range $activityPages }}{{ $wcTotal = add $wcTotal (int .WordCount) }}{{ end }}
+    {{ $wcDisplay := printf "%d" $wcTotal }}
+    {{ if $cjk }}{{ $wcDisplay = printf "%.1f" (div (float $wcTotal) 10000.0) }}{{ end }}
 
     <div class="activity-head">
       <span class="h1">{{ i18n "home.recentActivity" }}</span>
-      <span class="activity-summary">{{ $windowTotal }} {{ i18n "home.activityUnit" $windowTotal }}</span>
     </div>
 
     <div class="activity-chart">
-      <div class="activity-band">
-        {{ range $m := $months }}
-          {{ $k := $m.Format "2006-01" }}
-          {{ $c := 0 }}
-          {{ with index $monthCounts $k }}{{ $c = . }}{{ end }}
-          {{ $pct := mul (div (float $c) (float $maxCount)) 100.0 }}
-          <div class="activity-bar{{ if eq $c 0 }} is-empty{{ end }}" title="{{ $k }} · {{ $c }} {{ i18n "home.activityUnit" $c }}">
-            <span class="activity-bar-fill" style="height: {{ printf "%.0f" $pct }}%"></span>
+      <div class="heatmap">
+        {{/* Month labels row, aligned with the week columns below. */}}
+        <div class="heat-months">
+          <span class="heat-corner"></span>
+          <div class="heat-month-cols">
+            {{ $.Scratch.Set "prevMonth" "" }}
+            {{ range $ws := $weeks }}
+              {{ $m := $ws.Format "Jan" }}
+              {{ if $cjk }}{{ $m = printf "%d月" (int ($ws.Format "1")) }}{{ end }}
+              {{ if ne $m ($.Scratch.Get "prevMonth") }}
+                {{ $.Scratch.Set "prevMonth" $m }}
+                <span class="heat-month is-on">{{ $m }}</span>
+              {{ else }}
+                <span class="heat-month"></span>
+              {{ end }}
+            {{ end }}
           </div>
-        {{ end }}
+        </div>
+
+        <div class="heat-body">
+          {{/* Weekday labels column — only Sun / Tue / Thu / Sat are labelled. */}}
+          <div class="heat-weekdays">
+            {{ range $di := seq 7 }}
+              {{ $name := index $days (sub $di 1) }}
+              {{ if in (slice 1 3 5 7) $di }}
+                <span class="heat-wd">{{ $name }}</span>
+              {{ else }}
+                <span class="heat-wd is-blank"></span>
+              {{ end }}
+            {{ end }}
+          </div>
+
+          {{/* The grid: one column per week, seven cells per column. */}}
+          <div class="heat-grid">
+            {{ range $ws := $weeks }}
+            <div class="heat-week">
+              {{ range $di := seq 7 }}
+                {{ $day := $ws.AddDate 0 0 (sub $di 1) }}
+                {{ $k := $day.Format "2006-01-02" }}
+                {{ $c := 0 }}{{ with index $dayCounts $k }}{{ $c = . }}{{ end }}
+                {{ $level := 0 }}
+                {{ if gt $c 0 }}
+                  {{ $ratio := div (float $c) (float $maxDay) }}
+                  {{ $level = 1 }}
+                  {{ if ge $ratio 0.25 }}{{ $level = 2 }}{{ end }}
+                  {{ if ge $ratio 0.50 }}{{ $level = 3 }}{{ end }}
+                  {{ if ge $ratio 0.75 }}{{ $level = 4 }}{{ end }}
+                {{ end }}
+                <span class="heat-cell L{{ $level }}" title="{{ $day.Format "2006-01-02" }} · {{ $c }} {{ i18n "home.activityUnit" $c }}"></span>
+              {{ end }}
+            </div>
+            {{ end }}
+          </div>
+        </div>
       </div>
-      <div class="activity-labels">
-        {{ range $m := $months }}
-          <span class="activity-label">{{ $m.Format "1" }}</span>
+
+      <div class="heat-footer">
+        <span>{{ i18n "heatmap.postsCount" (dict "Count" (len $activityPages)) }}</span>
+        <span class="sep">|</span>
+        <span>{{ i18n "heatmap.wordCount" (dict "Words" $wcDisplay) }}</span>
+        {{ with .Site.Params.activityStatsHelpUrl }}
+        <span class="sep">|</span>
+        <a href="{{ . }}" target="_blank" rel="noopener">{{ i18n "heatmap.howItWorks" }}</a>
         {{ end }}
-      </div>
-      <div class="activity-years">
-        <span>{{ $oldest.Format "2006" }}</span>
-        <span>{{ $end.Format "2006" }}</span>
       </div>
     </div>
   </section>

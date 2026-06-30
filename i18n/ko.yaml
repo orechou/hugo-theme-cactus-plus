@@ -143,8 +143,33 @@
   translation: "최근 메모"
 
 - id: home.recentActivity
-  translation: "최근 활동"
+  translation: "게시물 통계"
 
 - id: home.activityUnit
   translation:
     other: "개"
+
+- id: heatmap.days
+  translation: "일 월 화 수 목 금 토"
+
+- id: heatmap.postsCount
+  translation: "게시물: {{ .Count }}개"
+
+- id: heatmap.wordCount
+  translation: "총 단어 수: {{ .Words }}만 자"
+
+- id: heatmap.howItWorks
+  translation: "사용 방법"
+
+- id: home.recentWeekly
+  translation: "최근 주간"
+
+- id: weekly.title
+  translation: "주간"
+
+- id: weekly.untitled
+  translation: "제목 없음"
+
+- id: weekly.readMore
+  translation: "읽기"
+
