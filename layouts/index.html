@@ -4,7 +4,7 @@
   {{ $mainPosts := (sort ( where site.RegularPages "Type" "in" site.Params.mainSections ) "Date" "desc") }}
   {{ $diaryPages := (sort ( where site.RegularPages "Type" "eq" "diary" ) "Date" "desc") }}
   {{ $weeklyPages := (sort ( where site.RegularPages "Type" "eq" "weekly" ) "Date" "desc") }}
-  {{ $activityPages := (sort (union $mainPosts $diaryPages) "Date" "desc") }}
+  {{ $activityPages := (sort (union (union $mainPosts $diaryPages) $weeklyPages) "Date" "desc") }}
 
   <section id="about">
     {{ if isset .Site.Params "description" }}
@@ -130,7 +130,7 @@
   </section>
   {{ end }}
 
-  {{/* Recent activity — GitHub-style daily heatmap (posts + diary by day) */}}
+  {{/* Recent activity — GitHub-style daily heatmap (posts + diary + weekly by day) */}}
   {{ if and (.Site.Params.showRecentActivity | default true) (gt (len $activityPages) 0) }}
   <section id="recent-activity">
     {{/* Count items per calendar day (YYYY-MM-DD) */}}
