@@ -1,0 +1,18 @@
+{{/*
+  Lazy-load a fingerprinted assets/js file and call a global init function.
+  Used by section templates whose JS only matters on that section (timeline,
+  paintings, neodb). The page re-runs the inline script on every SPA
+  navigation, so this is a single source of truth and the loading guard
+  keeps a fast re-click from injecting the script tag twice.
+
+  Args (dict): src (e.g. "js/timeline.js"), init (e.g. "initTimeline")
+
+  The {{ $init := .init }} trick doesn't work — Hugo's html/template
+  auto-quotes bare string values inside <script>. We instead build a
+  per-call JS literal via a sprintf placeholder and use safeJS to land
+  the resolved snippet verbatim.
+*/}}
+{{- $init := .init -}}
+{{- $src := (resources.Get .src | fingerprint "sha512").RelPermalink -}}
+{{- $snippet := printf "if (typeof window.%s === 'function') { window.%s(); } else if (!window.__lazyJsLoading || !window.__lazyJsLoading['%s']) { window.__lazyJsLoading = window.__lazyJsLoading || {}; window.__lazyJsLoading['%s'] = true; var s = document.createElement('script'); s.src = '%s'; s.onload = function() { window.__lazyJsLoading['%s'] = false; window.%s(); }; s.onerror = function() { window.__lazyJsLoading['%s'] = false; }; document.body.appendChild(s); }" $init $init $init $init $src $init $init $init -}}
+<script>{{ $snippet | safeJS }}</script>

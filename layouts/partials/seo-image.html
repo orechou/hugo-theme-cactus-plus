@@ -1,0 +1,23 @@
+{{/*
+  Returns the first image URL via the shared fallback chain:
+    frontmatter images[] → page-bundle images → cover → site default.
+  Returns an empty string when no source matches, so callers can wrap with
+  `{{ with $img }}` to emit meta tags only when there's something to point at.
+*/}}
+{{- $url := "" -}}
+{{- with .Params.images -}}
+  {{- $url = index . 0 | absURL -}}
+{{- else -}}
+  {{- with .Resources.ByType "image" -}}
+    {{- $url = (index . 0).Permalink -}}
+  {{- else -}}
+    {{- with .Params.cover -}}
+      {{- $url = . | absURL -}}
+    {{- else -}}
+      {{- with .Site.Params.defaultOgImage -}}
+        {{- $url = . | absURL -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $url -}}

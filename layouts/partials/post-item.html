@@ -1,0 +1,29 @@
+{{/*
+  Shared `<li class="post-item">` row used by weekly/list, _default/list,
+  and the home-page recent-posts/diary/weekly sections.
+
+  Variants:
+   - home=false (list page): `<span class="weekly-issue-no">` chip in
+     .meta when .Params.issue is set
+   - home=true (home page): optional .home-entry wrap with mood/weather/
+     issue chips after the link; time carries itemprop="datePublished"
+
+  Args (dict): page, dateFormat, home
+*/}}
+{{- $page := .page -}}
+{{- $df := .dateFormat -}}
+{{- $home := .home -}}
+<li class="post-item">
+  <div class="meta">
+    <time datetime="{{ time $page.Date }}"{{ if $home }} itemprop="datePublished"{{ end }}>{{ $page.Date.Format $df }}</time>
+    {{ if and (not $home) $page.Params.issue }}<span class="weekly-issue-no">#{{ printf "%03d" $page.Params.issue }}</span>{{ end }}
+  </div>
+  {{ if $home }}<span class="home-entry">{{ else }}<span>{{ end }}
+    <a href="{{ $page.Permalink }}">{{ if $page.Title }}{{ $page.Title }}{{ else }}{{ i18n "untitled" }}{{ end }}</a>
+    {{ if $home }}
+      {{ with $page.Params.mood }}<span class="home-chip mood">{{ . }}</span>{{ end }}
+      {{ with $page.Params.weather }}<span class="home-chip weather">{{ . }}</span>{{ end }}
+      {{ with $page.Params.issue }}<span class="home-chip weekly">#{{ printf "%03d" . }}</span>{{ end }}
+    {{ end }}
+  </span>
+</li>

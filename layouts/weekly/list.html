@@ -8,15 +8,7 @@
         {{ $.Scratch.Set "year" $year }}
         <h2>{{ $year }}</h2>
       {{ end }}
-      <li class="post-item">
-        <div class="meta">
-          <time datetime="{{ time .Date }}">{{ .Date.Format $dataFormat }}</time>
-          {{ with .Params.issue }}<span class="weekly-issue-no">#{{ printf "%03d" . }}</span>{{ end }}
-        </div>
-        <span>
-          <a href="{{ .Permalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ i18n "untitled" }}{{ end }}</a>
-        </span>
-      </li>
+      {{ partial "post-item.html" (dict "page" . "dateFormat" $dataFormat "home" false) }}
     {{ end }}
   </ul>
   {{ partial "pagination.html" . }}
