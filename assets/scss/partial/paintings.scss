@@ -15,26 +15,9 @@
 
 .painting-filter-tag {
   padding: 0.35rem 0.85rem;
-  border: 1px solid var(--color-border);
-  border-radius: 20px;
-  background: transparent;
-  color: var(--color-meta);
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: inherit;
   text-transform: capitalize;
 
-  &:hover {
-    color: var(--color-text);
-    border-color: var(--color-text);
-  }
-
-  &.active {
-    color: #fff;
-    background: #6B8E23;
-    border-color: #6B8E23;
-  }
+  @extend %filter-pill;
 }
 
 // Masonry layout
@@ -155,26 +138,13 @@
 
 // Infinite scroll loader
 .paintings-loader {
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   padding: 2rem 0;
   color: var(--color-meta);
   font-size: 0.9rem;
-}
-
-.loader-spinner {
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--color-border);
-  border-top-color: var(--color-accent-2);
-  border-radius: 50%;
-  animation: spin 0.6s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
 
 // Prompt and params (shared between modal and old single page)
@@ -342,7 +312,7 @@
   margin-bottom: 1.5rem;
   padding: 1rem;
   background: rgba(0, 0, 0, 0.03);
-  border-left: 3px solid #6B8E23;
+  border-left: 3px solid $brand-olive;
   border-radius: 0 6px 6px 0;
   font-style: italic;
 

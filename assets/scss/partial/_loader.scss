@@ -1,0 +1,21 @@
+// Shared loader spinner + label. Three section pages (paintings, neodb,
+// music-player) used to declare their own .loader-spinner with its own
+// @keyframes — all three were the same rotation. Fold them into one rule
+// keyed on .loader-spinner + a single @keyframes spin.
+//
+// Per-section override hooks: the section's .neodb-loader / .paintings-loader
+// wrapper still sets padding/layout and the spinner width via a local rule.
+
+.loader-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent-2);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

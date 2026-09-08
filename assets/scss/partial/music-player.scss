@@ -1,10 +1,5 @@
 // Music Player - Vinyl record + Tonearm + Hover tooltip
 
-@keyframes music-player-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 // ── Vinyl Button (record player) ──
 
 .music-player-btn {
@@ -22,7 +17,7 @@
   }
 
   &--playing .music-player-vinyl {
-    animation: music-player-spin 2s linear infinite;
+    animation: spin 2s linear infinite;
   }
 
   &--playing .music-player-arm {

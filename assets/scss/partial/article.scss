@@ -187,11 +187,11 @@ article {
       font-size: 11px;
 
       a {
-        background-image: linear-gradient(transparent, transparent 5px, $color-meta 5px, $color-meta);
+        @include underline(5px, $color-meta);
         color: $color-meta;
       }
       a:hover {
-        background-image: linear-gradient(transparent, transparent 4px, lighten($color-meta, 20%) 4px, lighten($color-meta, 20%));
+        @include underline(4px, lighten($color-meta, 20%));
         color: lighten($color-meta, 20%);
       }
       cite {

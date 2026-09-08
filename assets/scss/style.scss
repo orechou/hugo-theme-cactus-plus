@@ -1,5 +1,10 @@
 @import "variables";
 @import "colors/{{ site.Params.colortheme | default "white" }}";
+// Brand color used by filter pills, the painting-modal blockquote accent,
+// neodb my-rating, etc. Defined at the top level (not in _variables.scss)
+// so any later SCSS parser that processes @extend with the placeholder
+// body has the variable in scope.
+$brand-olive: #6B8E23;
 @import "mixins";
 @import "extend";
 @import "fonts";
@@ -174,6 +179,7 @@ body {
 }
 
 @import "partial/header";
+@import "partial/_loader";
 @import "partial/post/post-nav";
 @import "partial/index";
 @import "partial/article";

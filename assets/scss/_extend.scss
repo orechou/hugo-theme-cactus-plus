@@ -117,3 +117,44 @@ td {
   padding: 0 8px;
   border-bottom: none;
 }
+
+// --- shared UI recipes -----------------------------------------------------
+
+// Soft elevated card with a faint accent-tinted border, used by the home
+// page's project items and the activity heatmap card. The hover lift is
+// applied by the caller — the activity card doesn't hover, the project
+// item does, and the lift/transform varies per surface.
+%floating-card {
+  background-color: var(--color-background-code);
+  background: color-mix(in srgb, var(--color-accent-1) 5%, var(--color-background));
+  border: 1px solid color-mix(in srgb, var(--color-accent-1) 14%, transparent);
+  box-shadow:
+    0 6px 22px -8px color-mix(in srgb, var(--color-accent-1) 45%, transparent),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+}
+
+// Filter pill button: rounded outline that fills olive when active. Used by
+// neodb and paintings. Per-site padding and any text-transform stay local;
+// we only fold the truly identical rules.
+%filter-pill {
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--color-meta);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+
+  &:hover {
+    color: var(--color-text);
+    border-color: var(--color-text);
+  }
+
+  &.active {
+    color: #fff;
+    background: $brand-olive;
+    border-color: $brand-olive;
+  }
+}
