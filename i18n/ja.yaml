@@ -7,47 +7,11 @@
 - id: pagination.next
   translation: "次のページ"
 
-- id: nav.previous
-  translation: "前へ"
-
-- id: nav.next
-  translation: "次へ"
-
-- id: nav.previousPost
-  translation: "前の記事"
-
-- id: nav.nextPost
-  translation: "次の記事"
-
-- id: nav.topOfPage
-  translation: "ページの上部へ"
-
-- id: nav.backToTop
-  translation: "トップに戻る"
-
-- id: nav.sharePost
-  translation: "記事を共有"
-
-- id: nav.menu
-  translation: "メニュー"
-
-- id: nav.toc
-  translation: "目次"
-
-- id: nav.share
-  translation: "共有"
-
-- id: nav.top
-  translation: "トップ"
-
 - id: code.copy
   translation: "コピー"
 
 - id: code.copied
   translation: "コピーしました！"
-
-- id: music.title
-  translation: "音楽"
 
 - id: neodb.title
   translation: "書影音"
@@ -93,15 +57,6 @@
 
 - id: neodb.error
   translation: "読み込みに失敗しました。後でもう一度お試しください。"
-
-- id: neodb.rating
-  translation: "評価"
-
-- id: neodb.myRating
-  translation: "私の評価"
-
-- id: neodb.userComment
-  translation: "コメント"
 
 - id: search.title
   translation: "検索"
@@ -164,12 +119,5 @@
 - id: home.recentWeekly
   translation: "最近の週刊"
 
-- id: weekly.title
-  translation: "週刊"
-
-- id: weekly.untitled
+- id: untitled
   translation: "無題"
-
-- id: weekly.readMore
-  translation: "読む"
-

@@ -33,7 +33,6 @@
   var modal, input, resultsEl, statusEl, closeEl;
   var fuse = null;
   var indexState = 'idle'; // idle | loading | ready | error
-  var lastResults = [];
   var activeIndex = -1;
   var lastFocused = null;
   var debounceTimer = null;
@@ -169,7 +168,6 @@
       return;
     }
     var res = fuse.search(query).slice(0, 25);
-    lastResults = res;
     if (!res.length) {
       setStatus('<span class="search-modal-empty">' + escapeHtml(t('noResults', 'No results found')) + '</span>');
       return;

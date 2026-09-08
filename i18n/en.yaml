@@ -7,75 +7,25 @@
 - id: pagination.next
   translation: "Next page"
 
-- id: nav.previous
-  translation: "Previous"
-
-- id: nav.next
-  translation: "Next"
-
-- id: nav.previousPost
-  translation: "Previous post"
-
-- id: nav.nextPost
-  translation: "Next post"
-
-- id: nav.topOfPage
-  translation: "Top of Page"
-
-- id: nav.backToTop
-  translation: "Back to top"
-
-- id: nav.sharePost
-  translation: "Share post"
-
-- id: nav.menu
-  translation: "Menu"
-
-- id: nav.toc
-  translation: "TOC"
-
-- id: nav.share
-  translation: "Share"
-
-- id: nav.top
-  translation: "Top"
-
 - id: code.copy
   translation: "Copy"
 
 - id: code.copied
   translation: "Copied!"
 
-- id: diary.title
-  translation: "Diary"
-
-
-- id: diary.untitled
+- id: untitled
   translation: "Untitled"
-
-- id: paintings.title
-  translation: "Paintings"
-
 - id: paintings.filterAll
   translation: "All"
 
 - id: paintings.loading
   translation: "Loading..."
 
-- id: paintings.model
-  translation: "Model"
-
 - id: paintings.prompt
   translation: "Prompt"
 
 - id: paintings.negative_prompt
   translation: "Negative Prompt"
-
-- id: paintings.parameters
-  translation: "Parameters"
-
-- id: music.title
-  translation: "Music"
 
 - id: neodb.title
   translation: "Library"
@@ -122,15 +72,6 @@
 - id: neodb.error
   translation: "Failed to load. Please try again later."
 
-- id: neodb.rating
-  translation: "Rating"
-
-- id: neodb.myRating
-  translation: "My Rating"
-
-- id: neodb.userComment
-  translation: "Comment"
-
 - id: timeline.totalLabel
   translation: "posts, keep writing"
 
@@ -145,9 +86,6 @@
 
 - id: timeline.motto
   translation: "Live in the moment, cherish the present"
-
-- id: timeline.untitled
-  translation: "Untitled"
 
 - id: error.404Title
   translation: "Page Not Found"
@@ -219,13 +157,4 @@
 
 - id: home.recentWeekly
   translation: "Recent Weekly"
-
-- id: weekly.title
-  translation: "Weekly"
-
-- id: weekly.untitled
-  translation: "Untitled"
-
-- id: weekly.readMore
-  translation: "Read"
 

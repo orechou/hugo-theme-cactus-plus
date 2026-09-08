@@ -7,75 +7,25 @@
 - id: pagination.next
   translation: "下一页"
 
-- id: nav.previous
-  translation: "上一页"
-
-- id: nav.next
-  translation: "下一页"
-
-- id: nav.previousPost
-  translation: "上一篇"
-
-- id: nav.nextPost
-  translation: "下一篇"
-
-- id: nav.topOfPage
-  translation: "返回顶部"
-
-- id: nav.backToTop
-  translation: "返回顶部"
-
-- id: nav.sharePost
-  translation: "分享文章"
-
-- id: nav.menu
-  translation: "菜单"
-
-- id: nav.toc
-  translation: "目录"
-
-- id: nav.share
-  translation: "分享"
-
-- id: nav.top
-  translation: "顶部"
-
 - id: code.copy
   translation: "复制"
 
 - id: code.copied
   translation: "已复制！"
 
-- id: diary.title
-  translation: "日记"
-
-
-- id: diary.untitled
-  translation: "无标题"
-
-- id: paintings.title
-  translation: "画作"
-
+- id: untitled
+  translation: "未命名"
 - id: paintings.filterAll
   translation: "全部"
 
 - id: paintings.loading
   translation: "加载中..."
 
-- id: paintings.model
-  translation: "模型"
-
 - id: paintings.prompt
   translation: "提示词"
 
 - id: paintings.negative_prompt
   translation: "反向提示词"
-
-- id: paintings.parameters
-  translation: "生成参数"
-
-- id: music.title
-  translation: "音乐"
 
 - id: neodb.title
   translation: "书影音"
@@ -122,15 +72,6 @@
 - id: neodb.error
   translation: "加载失败，请稍后重试"
 
-- id: neodb.rating
-  translation: "评分"
-
-- id: neodb.myRating
-  translation: "我的评分"
-
-- id: neodb.userComment
-  translation: "短评"
-
 - id: timeline.totalLabel
   translation: "篇，再接再厉"
 
@@ -145,9 +86,6 @@
 
 - id: timeline.motto
   translation: "活在当下，珍惜眼下"
-
-- id: timeline.untitled
-  translation: "无标题"
 
 - id: error.404Title
   translation: "页面不存在"
@@ -218,13 +156,4 @@
 
 - id: home.recentWeekly
   translation: "最近一期周刊"
-
-- id: weekly.title
-  translation: "周刊"
-
-- id: weekly.untitled
-  translation: "未命名"
-
-- id: weekly.readMore
-  translation: "阅读"
 

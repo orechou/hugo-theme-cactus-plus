@@ -7,47 +7,11 @@
 - id: pagination.next
   translation: "Page suivante"
 
-- id: nav.previous
-  translation: "Précédent"
-
-- id: nav.next
-  translation: "Suivant"
-
-- id: nav.previousPost
-  translation: "Article précédent"
-
-- id: nav.nextPost
-  translation: "Article suivant"
-
-- id: nav.topOfPage
-  translation: "Haut de page"
-
-- id: nav.backToTop
-  translation: "Retour en haut"
-
-- id: nav.sharePost
-  translation: "Partager l'article"
-
-- id: nav.menu
-  translation: "Menu"
-
-- id: nav.toc
-  translation: "Table des matières"
-
-- id: nav.share
-  translation: "Partager"
-
-- id: nav.top
-  translation: "Haut"
-
 - id: code.copy
   translation: "Copier"
 
 - id: code.copied
   translation: "Copié !"
-
-- id: music.title
-  translation: "Musique"
 
 - id: neodb.title
   translation: "Livres, Films & Musique"
@@ -93,15 +57,6 @@
 
 - id: neodb.error
   translation: "Échec du chargement. Veuillez réessayer plus tard."
-
-- id: neodb.rating
-  translation: "Note"
-
-- id: neodb.myRating
-  translation: "Ma note"
-
-- id: neodb.userComment
-  translation: "Commentaire"
 
 - id: search.title
   translation: "Rechercher"
@@ -165,12 +120,5 @@
 - id: home.recentWeekly
   translation: "Hebdomadaire récent"
 
-- id: weekly.title
-  translation: "Hebdo"
-
-- id: weekly.untitled
+- id: untitled
   translation: "Sans titre"
-
-- id: weekly.readMore
-  translation: "Lire"
-

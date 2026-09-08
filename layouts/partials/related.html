@@ -27,7 +27,7 @@
     {{- $dataFormat := $.Site.Params.dateFormat | default "2006-01-02" -}}
     <li class="related-item">
       <a href="{{ .Permalink }}" class="related-link">
-        <span class="related-title">{{ if .Title }}{{- .Title -}}{{ else }}{{- i18n "timeline.untitled" | default "Untitled" -}}{{ end }}</span>
+        <span class="related-title">{{ if .Title }}{{- .Title -}}{{ else }}{{- i18n "untitled" -}}{{ end }}</span>
         <span class="related-date"><time datetime="{{ time .Date }}">{{ .Date.Format $dataFormat }}</time></span>
       </a>
     </li>

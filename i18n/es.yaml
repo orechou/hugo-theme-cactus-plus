@@ -7,47 +7,11 @@
 - id: pagination.next
   translation: "Página siguiente"
 
-- id: nav.previous
-  translation: "Anterior"
-
-- id: nav.next
-  translation: "Siguiente"
-
-- id: nav.previousPost
-  translation: "Entrada anterior"
-
-- id: nav.nextPost
-  translation: "Entrada siguiente"
-
-- id: nav.topOfPage
-  translation: "Volver arriba"
-
-- id: nav.backToTop
-  translation: "Volver al inicio"
-
-- id: nav.sharePost
-  translation: "Compartir entrada"
-
-- id: nav.menu
-  translation: "Menú"
-
-- id: nav.toc
-  translation: "Índice"
-
-- id: nav.share
-  translation: "Compartir"
-
-- id: nav.top
-  translation: "Arriba"
-
 - id: code.copy
   translation: "Copiar"
 
 - id: code.copied
   translation: "¡Copiado!"
-
-- id: music.title
-  translation: "Música"
 
 - id: neodb.title
   translation: "Libros, Películas y Música"
@@ -93,15 +57,6 @@
 
 - id: neodb.error
   translation: "Error al cargar. Inténtelo de nuevo más tarde."
-
-- id: neodb.rating
-  translation: "Calificación"
-
-- id: neodb.myRating
-  translation: "Mi calificación"
-
-- id: neodb.userComment
-  translation: "Comentario"
 
 - id: search.title
   translation: "Buscar"
@@ -165,12 +120,5 @@
 - id: home.recentWeekly
   translation: "Semanal reciente"
 
-- id: weekly.title
-  translation: "Semanal"
-
-- id: weekly.untitled
+- id: untitled
   translation: "Sin título"
-
-- id: weekly.readMore
-  translation: "Leer"
-

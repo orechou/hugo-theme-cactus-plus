@@ -101,7 +101,7 @@
         <li class="post-item">
           <div class="meta"><time datetime="{{ time .Date }}" itemprop="datePublished">{{ .Date.Format $dataFormat }}</time></div>
           <span class="home-entry">
-            <a href="{{ .Permalink }}">{{ if .Title }} {{- .Title -}} {{ else }} {{- i18n "diary.untitled" -}}{{ end }}</a>
+            <a href="{{ .Permalink }}">{{ if .Title }} {{- .Title -}} {{ else }} {{- i18n "untitled" -}}{{ end }}</a>
             {{ with .Params.mood }}<span class="home-chip mood">{{ . }}</span>{{ end }}
             {{ with .Params.weather }}<span class="home-chip weather">{{ . }}</span>{{ end }}
           </span>
@@ -121,7 +121,7 @@
       <li class="post-item">
         <div class="meta"><time datetime="{{ time .Date }}" itemprop="datePublished">{{ .Date.Format $dataFormat }}</time></div>
         <span class="home-entry">
-          <a href="{{ .Permalink }}">{{ if .Title }} {{- .Title -}} {{ else }} {{- i18n "weekly.untitled" -}}{{ end }}</a>
+          <a href="{{ .Permalink }}">{{ if .Title }} {{- .Title -}} {{ else }} {{- i18n "untitled" -}}{{ end }}</a>
           {{ with .Params.issue }}<span class="home-chip weekly">#{{ printf "%03d" . }}</span>{{ end }}
         </span>
       </li>

@@ -97,19 +97,10 @@ weight = 7
   # Post settings
   showReadTime = true
   dateFormat = "2006-01-02"
-  tocInline = true
 
   # Comments system (optional)
   [params.comments]
     enabled = false  # Disabled by default
-
-  # Diary configuration
-  [params.diary]
-  diaryPerPage = 10
-
-  # Paintings configuration
-  [params.paintings]
-  paintingsPerPage = 12
 
   # Music player configuration
   [params.music]

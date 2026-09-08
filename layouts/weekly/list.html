@@ -14,7 +14,7 @@
           {{ with .Params.issue }}<span class="weekly-issue-no">#{{ printf "%03d" . }}</span>{{ end }}
         </div>
         <span>
-          <a href="{{ .Permalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ i18n "weekly.untitled" }}{{ end }}</a>
+          <a href="{{ .Permalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ i18n "untitled" }}{{ end }}</a>
         </span>
       </li>
     {{ end }}

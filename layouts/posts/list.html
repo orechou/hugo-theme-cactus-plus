@@ -45,7 +45,7 @@
     {{ end }}
     <div class="timeline-item">
       <span class="timeline-date">{{ .Date.Format "01/02" }}</span>
-      <a href="{{ .Permalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ i18n "timeline.untitled" }}{{ end }}</a>
+      <a href="{{ .Permalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ i18n "untitled" }}{{ end }}</a>
       <span class="timeline-section-info">
         {{- with .Params.categories }}{{ delimit . "/" }}{{- end -}}
       </span>
@@ -54,11 +54,6 @@
 </div>
 
 <script>
-window.timelineConfig = {{ jsonify (dict
-  "dayOfYear" (i18n "timeline.dayOfYear")
-  "yearProgress" (i18n "timeline.yearProgress")
-  "dayProgress" (i18n "timeline.dayProgress")
-) | safeJS }};
 if (typeof window.initTimeline === 'function') {
   window.initTimeline();
 } else {

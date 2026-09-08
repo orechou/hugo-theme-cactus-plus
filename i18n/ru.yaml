@@ -7,47 +7,11 @@
 - id: pagination.next
   translation: "Следующая страница"
 
-- id: nav.previous
-  translation: "Назад"
-
-- id: nav.next
-  translation: "Вперёд"
-
-- id: nav.previousPost
-  translation: "Предыдущий пост"
-
-- id: nav.nextPost
-  translation: "Следующий пост"
-
-- id: nav.topOfPage
-  translation: "В начало страницы"
-
-- id: nav.backToTop
-  translation: "Вернуться наверх"
-
-- id: nav.sharePost
-  translation: "Поделиться постом"
-
-- id: nav.menu
-  translation: "Меню"
-
-- id: nav.toc
-  translation: "Содержание"
-
-- id: nav.share
-  translation: "Поделиться"
-
-- id: nav.top
-  translation: "Наверх"
-
 - id: code.copy
   translation: "Копировать"
 
 - id: code.copied
   translation: "Скопировано!"
-
-- id: music.title
-  translation: "Музыка"
 
 - id: neodb.title
   translation: "Книги, Фильмы и Музыка"
@@ -93,15 +57,6 @@
 
 - id: neodb.error
   translation: "Не удалось загрузить. Попробуйте позже."
-
-- id: neodb.rating
-  translation: "Оценка"
-
-- id: neodb.myRating
-  translation: "Моя оценка"
-
-- id: neodb.userComment
-  translation: "Комментарий"
 
 - id: search.title
   translation: "Поиск"
@@ -167,12 +122,5 @@
 - id: home.recentWeekly
   translation: "Свежий выпуск"
 
-- id: weekly.title
-  translation: "Еженедельник"
-
-- id: weekly.untitled
+- id: untitled
   translation: "Без названия"
-
-- id: weekly.readMore
-  translation: "Читать"
-
