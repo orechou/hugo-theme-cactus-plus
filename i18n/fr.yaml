@@ -122,3 +122,6 @@
 
 - id: untitled
   translation: "Sans titre"
+
+- id: code.copyError
+  translation: "Erreur"

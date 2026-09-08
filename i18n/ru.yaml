@@ -124,3 +124,6 @@
 
 - id: untitled
   translation: "Без названия"
+
+- id: code.copyError
+  translation: "Ошибка"

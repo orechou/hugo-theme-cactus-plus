@@ -158,3 +158,6 @@
 - id: home.recentWeekly
   translation: "Recent Weekly"
 
+
+- id: code.copyError
+  translation: "Error"

@@ -121,3 +121,6 @@
 
 - id: untitled
   translation: "제목 없음"
+
+- id: code.copyError
+  translation: "복사 실패"

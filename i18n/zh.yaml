@@ -157,3 +157,6 @@
 - id: home.recentWeekly
   translation: "最近一期周刊"
 
+
+- id: code.copyError
+  translation: "复制失败"

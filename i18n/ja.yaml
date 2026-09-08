@@ -121,3 +121,6 @@
 
 - id: untitled
   translation: "無題"
+
+- id: code.copyError
+  translation: "コピー失敗"

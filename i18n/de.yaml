@@ -122,3 +122,6 @@
 
 - id: untitled
   translation: "Unbetitelt"
+
+- id: code.copyError
+  translation: "Fehler"
