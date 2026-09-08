@@ -22,10 +22,14 @@
 <script>window.neodbConfig = {{ jsonify $cfg | safeJS }};
 if (typeof window.initNeoDB === 'function') {
   window.initNeoDB();
+} else if (window.__neodbScriptLoading) {
+  // neodb.js is already loading; its onload will call initNeoDB()
 } else {
+  window.__neodbScriptLoading = true;
   var s = document.createElement('script');
   s.src = {{ (resources.Get "js/neodb.js" | fingerprint "sha512").RelPermalink }};
-  s.onload = function() { window.initNeoDB(); };
+  s.onload = function() { window.__neodbScriptLoading = false; window.initNeoDB(); };
+  s.onerror = function() { window.__neodbScriptLoading = false; };
   document.body.appendChild(s);
 }
 </script>
